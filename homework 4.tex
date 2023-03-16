@@ -1,0 +1,298 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 4}} } \vspace{0.2cm}\\
+Due October 1st at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=4.1]
+    \item  True or false? If true, then prove the statement; if false, then give a
+counterexample. For each part, let $A \in \mathbb{R}^{n×n}$be a square matrix.
+\begin{enumerate}
+    \item if the first row of A is zero, then A cannot be invertible.
+    \blue{
+    \begin{itemize}
+        \item to show this is false suppose for the sake of contradiction that such an A was inevitable. $AA^{-1}=A^{-1}A=I$ 
+        \item consider $A^{-1}A$ we know that the first row of A is all zeros, so the first element of $A^{-1}A$ will have to be $A^{-1}_{1,1}0+...+A^{-1}_{1,n}0=0$ and since the result does not have a zero in the first element in can not be the identity matrix. so it is a contradiction. 
+
+        {\hfill$\square$}
+    \end{itemize}
+    }
+    \item Suppose that for every column of A, the sum of the entries along that column is zero. Then
+A cannot be inevitable
+    \blue{
+    \begin{itemize}
+        \ite we know that for A to be invertable rank(A)=N must be true 
+        \item further we know that $A^T$ will have all rows such that they some to zero. 
+        \item thus is is clear that for the matrix $x=\begin{pmatrix}
+        1 \\ 1\\...\\1
+        \end{pmatrix}$ we will have $A^{t}x=\begin{pmatrix}
+        \Sigma \text{row 1}\\...\\ \Sigma \text{row n}
+        \end{pmatrix}=\begin{pmatrix}
+        0\\0\\...\\0
+        \end{pmatrix}$ the kernel of $A^{t}\neq \{0\}$ which implies that dim(ker($A^t))>0$ which implies $rank(A^T)\leq n$ and since $rank(A^t)=rank(A)\leq n$ meaning that A can not be invertable. 
+        {\hfill$\square$}
+    \end{itemize}
+    }
+    
+    \item If all diagonal entries Aii = 0, then A cannot be invertible
+    \blue{
+    \begin{itemize}
+        \item consider the counter example $A=\begin{pmatrix}
+        0&1\\1&0
+        \end{pmatrix}$ we can see clearly that $A^{-1}=\begin{pmatrix}
+        0&1\\1&0
+        \end{pmatrix}$ \item  since A=I=$A^{-1}$it is clear that  $A^A{-1}=I=A{-1}A$ 
+    \end{itemize}}
+        \item If all diagonal entries Aii = 1, then A must be invertible
+    \blue{
+    \begin{itemize}
+        \item consider the counter example $A=\begin{pmatrix}
+        1&1\\1&1
+        \end{pmatrix}$ we can see here that $det(A)=(1)(1)-(1)(1)=0$ thus the matrix is singular. 
+    \end{itemize}}
+\end{enumerate}    
+    
+
+
+
+
+
+\end{enumerate} 
+\begin{enumerate}[label=4.2]
+\item For vectors x = (x1, x2) in $\mathbb{R}^2$, we define N (x) = max(|x1|, |x2|)
+\begin{enumerate}
+    \item Prove that $|a + b| \leq |a| + |b|$ for any scalars a, b $\in\mathbb{R}$
+    \blue{
+    \begin{itemize}
+        \item note that $|x|=max\{x,-x\}$
+        \item so consider from that we have $a+b\leq |a|+b\leq |a|+|b|$
+        \item and $-a+(-b)\leq |a|+(-b)\leq |a|+|b| $
+        \item this tell us that $(a+b)\leq |a|+|b|$and $-(a+b)\leq |a|+|b|$ meaning that $|a+b|=max\{-(a+b),(a+b)\}\leq |a|+|b|$ and finally $|a+b|\leq |a|+|b|$ 
+    \end{itemize}}
+    \item Prove that N (·) is a norm on $\mathbb{R}^2$.
+    \blue{
+    \begin{enumerate}
+        \item first we want to show that N(*) is homogeneous 
+        \begin{itemize}
+            \item note that for a vector $x\in \mathbb{R}^2$ and a scalar $\alpha \in \mathbb{R}$ $||\alpha x||=max\{|\alpha x_1|, |\alpha x_2|\}=max\{max \{\alpha x_1, -\alpha x_1\},max\{\alpha x_2, -\alpha x_2\}\}\\ =max\{|\alpha| max\{ x_1, - x_1\}, |\alpha| max\{ x_2, - x_2\}\}=\\ |\alpha| max\{ max\{ x_1, - x_1\}, max\{ x_2, - x_2\}\}=|\alpha| max\{ |x_1|, |x_2|\}=|\alpha| ||x||$
+        \end{itemize}
+        \item next we want to show that  N(*) is positive definite
+        \begin{itemize}
+            \item suppose for the sake of contradiction that we have a vector $x\in \mathbb{R}^{2}$ such that $||x||=0$ but $x\neq 0$
+            \item this would imply that $max\{|x_1|,|x_2|\}=0$ that would mean that $\max\{x_1,-x_1\}=0$ this only holds if $x_1=0$ and $\max\{x_2,-x_2\}=0$ this only holds if $x_2=0$ meaning $x=0$ which contradicts our previous assumption that $x\neq 0$
+        \end{itemize}
+        \item then we finally want to show that N(*) follows the triangle inequality
+        \begin{itemize}
+            \item for two arbitary vectors $u,v\in \mathbb{R}^2$ we can see that $||u+v||=max\{|u_1+v_1|,|u_2+v_2|\}$ so we know that $||u+v||$ will either be $|u_1+v_1|$ or $|u_2+v_2|$
+            \item so we know by the traingle inequality that $|u_1+v_1|\leq |u_1|+|v_1|\leq max\{|u_1|,|u_2|\}+max\{|v_1|,|v_2|\}$
+            \item and by the same argument $|u_2+v_2|\leq |u_1|+|v_1|\leq max\{|u_1|,|u_2|\}+max\{|v_1|,|v_2|\}$
+            \item so thus it msut be the case that $||u+v||\leq ||u||+||v||$
+        \end{itemize}
+    \end{enumerate}}
+    \item let x = (10, 0) and y = (9, 9). Using the norm N (·), which of x and y has bigger norm?
+    \blue{
+    \begin{enumerate}
+        \item first let us check N(*)
+        \begin{itemize}
+            \item ||x||=max$\{|10|,|0|\}=10>9=max\{|9|,|9|\}=||y||$ so x has the larger norm 
+        \end{itemize}
+        \item now let us check the euclidean norm 
+        \begin{itemize}
+            \item $||x||=\sqrt{10^2+0^2}=10<18\sqrt{81+81}=\sqrt{9^2+9^2}=||y||$ so thus y is larger. 
+        \end{itemize}
+    \end{enumerate}
+    }
+    \item imagine x = (x1, x2) represents your grades on the midterm (x1) and final exam (x2).
+Would you rather that your final grade were computed using the N (·) norm or the Euclidean
+norm of your exam grades? Explain your choice
+Using the Euclidean norm, which of x and y has bigger norm?
+\blue{
+\begin{itemize}
+    
+    \item I would prefer for my grades to be calculated using the Euclidean norm. 
+    \item this is because $max\{|x_1|,|x_2|\}\leq \sqrt{x_1^2+x_2^2}$
+    \item suppose for simplicity that $x_1\geq x_2$
+    \item consdier the case where you got a zero $x_2$ one or more of the test. in this case $max\{|x_1|,|x_2|\}=|x_1|=x_1=\sqrt{x_1^2}= \sqrt{x_1^2+x_2^2}$ so in this case we have equality. 
+    \item but this consider teh case where $x_2$ is not zero. $max\{|x_1|,|x_2|\}=|x_1|=x_1\leq \sqrt{x_1^2+x_2^2}$ since as $x_2^2>0$ and square root is monotonically increasing. thus $x1\leq\sqrt{x_1^2+x_2^2}$ will always hold and we will always prefer the euclidian norms for our grades.   
+\end{itemize}}
+\end{enumerate}
+ \end{enumerate}
+\begin{enumerate}[label=4.3]
+\item
+lConsider the Euclidean dot product. Let S be a subspace of Rn, and
+let (v1, . . . , vn) be an orthonormal basis of Rn such that (v1, . . . , vk) is an orthonormal basis of S.
+\begin{enumerate}[label = (a)]
+    \item Consider any scalars c1, . . . , cn ∈ R. Compute ∥z∥2
+2 where z = ∑n
+i=1 civi. (Hint: the answer
+should only involve c1, . . . , cn.)
+\blue{
+
+\begin{itemize}
+    \item $||z||_2^2=||\Sigma_{i=1}^{n}c_iv_i||_2^2=\sqrt{\Sigma_{i=1}^{n}(c_i)^{2}v_i^{2}}^2=\sqrt{\Sigma_{i=1}^{n}(c_i)^{2}}^2=\Sigma_{i=1}^{n}(c_i)^{2}$
+\end{itemize}
+
+{\hfill$\square$}
+}
+
+\end{enumerate}
+\begin{enumerate}[label = (b)]
+\item    Consider any scalars α1, . . . , αn ∈ R and β1, . . . , βk. Use part (a) to compute ∥x−y∥2
+2 where
+x = ∑n
+i=1 αivi and y = ∑k
+j=1 βj vj . (Hint: the answer should only involve the αi and βj .)
+
+\blue{
+\begin{itemize}
+    \item let z $\in \mathbb{R}^n| z_i=y_i  i\leq k \text{ and } z_i=0 \text{ for i}\in [k+1,n]$ that is z is just y projected in n dimensional space with zeros in teh missing dimsions
+    \item so we can see that $||x-y||_2^{2}=||x-z||_2^{2}=||\Sigma_{i=1}^{n}(\alpha_i v_i -\beta_i v_i)||_2^2=||\Sigma_{i=1}^{n}(\alpha_i -\beta_i) v_i||_2^2$ by part a this is equal to $\Sigma_{i=1}^{n}(\alpha_i -\beta_i)^{2}=\Sigma_{i=1}^{k}(\alpha_i -\beta_i)^{2}+\Sigma_{i=k+1}^{n}(\alpha_i )^{2}$
+\end{itemize}
+}
+\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label = (c)]
+\item Suppose x ∈ Rn and y ∈ S. Use part (b) to compute ∥x − y∥2
+2 in terms of the quantities
+⟨x, vi⟩ and ⟨y, vi⟩. (Hint: the proposition on slide 21 of lecture 4 may be helpful.)l.
+\blue{
+\begin{itemize}
+
+\item let z $\in \mathbb{R}^n| z_i=y_i  i\leq k \text{ and } z_i=0 \text{ for i}\in [k+1,n]$ that is z is just y projhected in n dimensional space with zeros in teh missing dimsions
+\item we can write $||x-y||_2^2=||x-z||_2^2=||\Sigma_{i=1}^{n}<x,v_i>v_i-\Sigma_{i=1}^{n}<z,v_
+i>v_i||_{2}^{2}=||\Sigma_{i=1}^{n}<x-z,v_i>v_i||_2^2$ note that $<x-z,v_i>\in \ma\mathbb{R}$ thus we can use part a to write $||x-y||=\Sigma_{i=1}^{n}<x-z,v_i>^2=\Sigma_{i=1}^{k}<x-y,v_i>^2+\Sigma_{i=k+1}^{n}<x,v_i>^2$
+\end{itemize}
+
+}
+
+\end{enumerate}
+\begin{enumerate}[label = (d)]
+\item Suppose x ∈ Rn. Use part (c) to compute miny∈S ∥x − y∥2
+2. What is the corresponding
+minimizer?.
+\blue{
+\begin{itemize}
+    \item $miy_{y\in S}||x-y||_2^2=min_{y\in s}\Sigma_{i=1}^{k}<x-y,v_i>^2+\Sigma_{i=k+1}^{n}<x,v_i>^2$
+    \item $\Sigma_{i=k+1}^{n}<x,v_i>^2$ is fixed so we can only minimze $\Sigma_{i=1}^{k}<x-y,v_i>^2$
+    \item we know that the lowest an inner product goes is zero, and we can achive this by setting $y_i=x_i \forall i\in [1,k]$
+    \item setting y equal to the first k ellements of x we get $||x-y||=\Sigma_{i=1}^{n}<x-z,v_i>^2=\Sigma_{i=1}^{k}<x-y,v_i>^2+\Sigma_{i=k+1}^{n}<x,v_i>^2=\Sigma_{i=k+1}^{n}<x,v_i>^2$ as the minimum 
+\end{itemize}
+
+}
+
+\end{enumerate}
+\begin{enumerate}[label = (e)]
+\item Use part (d) to deduce that PS (x) = ∑k
+i=1⟨x, vi⟩vi. (Hint: use the definition of PS (x)
+from slide 29 of lecture 4, and argue that argminy∈S f (y) = argminy∈S (f (y))2 for any non-
+negative function f
+\blue{
+\begin{itemize}
+    \item $P_s(x)=argmin_{y\in S}||x-y||$ we know that $argmin_{y\in S}||x-y||_2^2=\Sigma_{i=1}^{k}<x,vi>v_i$
+    \item fruther we know that $||x||_2\geq 0\forall x$ and furhter that the square function is monotonically increasing on $x\geq 0$ meanign that on that interval any min for x on that interval will be a min for $x^2$
+    \item so yeah we can see that  $P_s(x)=\Sigma_{i=1}^{k}<x,vi>v_i$
+\end{itemize}
+
+}
+\end{enumerate}
+
+\begin{enumerate}[label = (f)]
+\item Use part (e) to deduce that PS is a linear map.l.
+\blue{
+
+\begin{itemize}
+    \item to show that $P_s$ is linear we need to show two things
+    \item first thatr $\forall v,w\in \mathbb{R}^n$ we have $L(v+w)=L(v)+L(W)$
+    \begin{itemize}
+        \item consider $x,y\in \mathbb{R}^n$ we can see that $P_s(x+y)=\Sigma_{i=1}^{n}<x+y,v_i>v_i=\Sigma_{i=1}^{n}<x,v_i>v_i+\Sigma_{i=1}^{n}<y,v_i>v_i=P_s(x)+P_s(y)$
+    \end{itemize}
+    \item as well as $\forall v\in \mathbb{R}^N \text{and } \alpha \in \mathbb{R}$ we have $l(\alpha v)=\alpha L(v)$
+    \begin{itemize}
+        \item  $P_s(\alpha x)=\Sigma_{i=1}^{n}<\alpha x,v_i>v_i=\alpha \Sigma_{i=1}^{n}< x,v_i>v_i=\alpha P_s(x)$
+    \end{itemize}
+    \item so yeah it is a linear map
+\end{itemize}
+}
+\end{enumerate}
+
+\begin{enumerate}[label = (g)]
+\item Use part (e) to conclude that V V T is the canonical matrix associated to PS ..
+\blue{
+\begin{itemize}
+    \item we want to show that $V^tVX=P_s(x)$ 
+    \item where V=\begin{pmatrix}
+    v_1, &,....&, v_k
+    \end{pmatrix}
+    \item so we can calcualte $(VV^Tx)_i=\sum_{j=1}^{n}(VV^T)_{i,j}x_{j}=\sum_{j=1}^{n}(\sum_{l=1}^{k}V_{i,l}V_{l,j}^T)x_{j}=\sum_{j=1}^{n}(\sum_{l=1}^{k}V_{i,l}V_{j,l})x_{j}=\sum_{j=1}^{n}(\sum_{l=1}^{k}(v_l)_{i}(v_l)_{j})x_{j}=\sum_{j=1}^{n}\sum_{l=1}^{k}(v_l)_{i}(v_l)_{j}x_{j}$
+    \item working from the other direction we can see
+    \item $P_s(x)_i=\Sigma_{l=1}^{k}<x,v_l>(v_l)_i=\Sigma_{l=1}^k(\Sigma_{j=1}^{n}x_j(v_l)_j)(v_i)_j=\sum_{j=1}^{n}\sum_{l=1}^{k}(v_l)_{i}(v_l)_{j}x_{j}$
+    \item thus we can see that $P_s(x)=(VV^Tx)$ showing that $(VV^Tx)$ is teh concocial matrix asociated to $P_s(x)$
+\end{itemize}
+
+}
+
+
+\end{enumerate}
+
+\newpage
+\begin{enumerate}[label=4.4]
+\itemConsider the same setup as in Problem 4.3. That is, consider the
+Euclidean dot product, let S be a subspace of Rn, and let (v1, . . . , vn) be an orthonormal basis of
+Rn such that (v1, . . . , vk) is an orthonormal basis of S
+\end{enumerate}
+\begin{enumerate}[label = (a)]
+    \item Puppose x ∈ Rn and y ∈ S. Compute ⟨x, y⟩ in terms of the quantities ⟨x, vi⟩ and ⟨y, vi⟩.
+(Hint: the proposition on slide 21 of lecture 4 may be helpful.
+    \blue{
+    \begin{itemize}
+        \item consider a n dimensional z vector whose first k ellements are y and the remianing elelemtns are zero
+        \item $<x,y>=<x,z>=<\Sigma_{i=1}^{n}\alpha_i v_i,\Sigma_{j=1}^{k} \beta_j v_j>=\Sigma_{i=1}^{n}\Sigma_{j=1}^{k}\alpha_i\beta_j<x_i,y_j>$ by the properties of inner products and orthognality. $\Sigma_{i=1}^{n}\Sigma_{j=1}^{k}\alpha_i\beta_j<x_i,y_j>=\Sigma_{i=1}^{n}\Sigma_{j=1}^{k}\alpha_i\beta_j$ and further as we proved in class $\alpha_i=<x,v_i>v_i$
+        \item thus we have $\Sigma_{i=1}^{n}\Sigma_{j=1}^{k}\alpha_i\beta_j=\Sigma_{i=1}^{n}\Sigma_{j=1}^{k}<x,v_i>v_i*<y,v_j>v_j=\Sigma_{i=1}^{k}<x,v_i>v_i*<y,v_i>v_i$ since it for i greater than k we wil have $<y,v_i>v_i=0$ and thus $<x,v_i>v_i<y,v_i>v_i=0$ 
+        \item so finalyl we have $<x,y>=\Sigma_{i=1}^{k}<x,v_i>v_i*<y,v_i>v_i=\Sigma_{i=1}^{k}<x,v_i>*<y,v_i>$
+    \end{itemize}
+    }
+\end{enumerate}
+\begin{enumerate}[label = (b)]
+    \item Use part (a) to prove that ⟨x, y⟩ = ⟨PS (x), y⟩ for any x ∈ Rn and y ∈ S. (Hint: use part
+(e) of Problem 4.3.)
+    \blue{
+    \begin{itemize}
+        \item  $<P_s(x),y>=<\Sigma_{i=1}^{k}<x,v_i>v_i,\Sigma_{i=1}^{k}<y,v_i>v_i$ then by liniarity we have $<P_s(x),y>=\Sigma_{i=1}^{k}<x,v_i>v_i*<y,v_i>v_i=<x,y>$ by part a 
+        
+        {\hfill$\square$}
+    \end{itemize}
+    }
+\end{enumerate}
+\begin{enumerate}[label = (c)]
+    \item Deduce from part (b) that x − PS (x) is orthogonal to S, for any x ∈ Rn
+    \blue{
+    \begin{itemize}
+        \item we say that a vector is orthogonal if $<x,y>=0$
+        \item so we want to check that $\forall y\in S$ we have $<x-P_s(x),y>=<x,y>-<x,P_s(y)$ by linearity then by part b we know that $<x,y>=<x,P_s(y)$  meaning that$<x-P_s(x),y>=<x,y>-<x,P_s(y)=0$ 
+        \item so yeah we can tell $x-P_s(x)$ will be orthogonal to any $y\in S$ 
+    \end{itemize}
+    
+    }
+\end{enumerate}
+\end{document}

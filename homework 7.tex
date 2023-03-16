@@ -1,0 +1,156 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 7}} } \vspace{0.2cm}\\
+Due October 16thth at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=7.1]
+   \item  Let $A \in \mathbb{R}^{nxx}$
+   \begin{enumerate}
+       \item Show for $B\in\mathbb{R}^{nxm}$ and $C\in\mathbb{R}^{mxn}$ we have $tr(BC)=TR(CB)$
+       
+       \red{
+       \begin{itemize}
+           \item call $D=CB$, $E=BC$
+           \item note that any ellement of D can be expressed as $D_{i,j}=\Sigma_{k=1}^{n}C_{i,k}B_{k,j}$
+           \item while any ellement of E can be expressed as $E_{i,j}=\Sigma_{k=1}^{m}B_{i,k}C_{k,j}$
+           \item so if we take the sum of the ellements on the diagnol of D we see $\Sigma_{i=1}^{m}D_{i,i}=\Sigma_{i=1}^{m}\Sigma_{k=1}^{n}C_{i,k}B_{k,i}$
+           \item while the diagnaol ellementts of E are  $\Sigma_{k=1}^{n}E_{k,k}=\Sigma_{i=1}^{n}\Sigma_{i=1}^{n}B_{k,i}C_{i,k}$ then by linarty of sums we have that equals $\Sigma_{i=1}^{m}\Sigma_{k=1}^{n}C_{i,k}B_{k,i}$ proving the equality
+       \end{itemize}
+       }
+      \item prove that for any symetric matrix A the trace of A is equal to the sum of its eigenvalues. 
+      \red{
+      \begin{itemize}
+          \item notice first that as A is symmetric and square the spectral theorem applies meaning A can be expressed as $A=PDP^{T}$ meaning that  $TR(A)=TR(PDP^T)$ then we know that then by part A we can say that $TR(A)=TR(PDP^T)=TR(P^TDP)$
+          \item so notice that we can write $P^TDP=$\begin{pmatrix} V_1^{T}\\...\\V_n^{T}
+          \end{pmatrix}\begin{pmatrix} \lambda_1 & ...& 0 \\...& ..... &...\\0 &... & \lambda_n 
+          \end{pmatrix}
+          \begin{pmatrix} V_1&..&V_n^{T}
+          \end{pmatrix}=\begin{pmatrix} v_{1,1}^t\lambda_1 & v_{1,2}^t\lambda_2..& v_{1,n}^t\lambda_n \\...& ..... &...\\v_{n,1}^t\lambda_1 & v_{n,2}^t\lambda_2..& v_{n,n}^t\lambda_n  \lambda_n 
+          \end{pmatrix}
+          \begin{pmatrix} V_1&..&V_n^{T}
+          \end{pmatrix}=\\\begin{pmatrix}
+          <\lambda_1 v_1,& v_1>&<\lambda_2 v_2, v_1>&...&<\lambda_n v_n, v_1>\\...&...&...\\<\lambda_1 v_1,& v_n>&<\lambda_2 v_n, v_1>&...&<\lambda_n v_n, v_n>
+          \end{pmatrix}=\\\begin{pmatrix}
+          \lambda_1< v_1,& v_1>&\lambda_2< v_2, v_1>&...&\lambda_n< v_n, v_1>\\...&...&...\\\lambda_1< v_1,& v_n>&\lambda_2< v_n, v_1>&...&\lambda_n< v_n, v_n>\end{pmatrix}=\begin{pmatrix} \lambda_1 & ...& 0 \\...& ..... &...\\0 &... & \lambda_n 
+          \end{pmatrix} 
+          \item and thus the trace is the sum of the our lambdas
+      \end{itemize}
+      }
+   \end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=7.2]
+\item
+\begin{enumerate}
+    \item let a be a symmetric matrix show that A is positive semidefninte only if  for any $y\in \mathbb{R}^{n} x^TDx\geq0$
+    \red{
+    \begin{enumerate}
+        \item first we will show that if A is positive semi-definite then for any $y\in \mathbb{R}^{n} y^TDy\geq0$
+        \begin{itemize}
+            \item consider an abitarty vector $x\in \mathbb{R}^n$ first notice that $x^tV=\begin{pmatrix}
+            x_1&...&x_n
+            \end{pmatrix}\begin{pmatrix}
+            v_1&...&v_n
+            \end{pmatrix}=\begin{pmatrix}
+            y_1(v_1)&...&y_n(v_n)
+            \end{pmatrix}$ where $y_i$ are scalars and $v_i$ are vectors. ie that there product is a linear combination of the bassic vectors. 
+            \item so since we know $\mathbb{R}^{n} y^TAy\geq0$ for any value of y, we can manipulate our value of y such that we can have $\begin{pmatrix}
+            y_1(v_1)&...&y_n(v_n)
+            \end{pmatrix}$ be any scalar
+            \item also note that $(x^tV)^t=V^tx$ 
+            \item thus we can say for an arbitrary $y\in\mathbb{R}^{n}$ we can pick an $x\in \mathbb{R}^n$ such that $x^tV=y^t$ and thus as we know $0\leq x^tAx=x^tVDv^tx=y^tDy$ meaning finally $0\leq y^tDy$
+            
+        \end{itemize}
+        \item now we will show that first we will show if for any $y\in \mathbb{R}^{n} y^TDy\geq0$ then A is positive semi-definite 
+        \begin{itemize}
+            
+            \item we know that for any vector x we will have $x^tDx\geq 0$ so for any vector y$\in \mathbb{R}^d$ we can write $y^tAy=y^tVDV^ty=x^tDx\geq 0$ for some vector $x\in \mathbb{R}^d$ meaning that this will hold for any vector y.  
+        \end{itemize}
+    \end{enumerate}
+
+    }
+            \item Use part (a) to prove that A is positive semidefinite if and only if all the eigenvalues of A are non-negative.
+            \red{
+        \begin{enumerate}
+            \item first we will show that if A is positive semi definite then all eigenvalues are negative. \begin{itemize}
+                \item from part A we know that given A is positive semidefininte we will have $y^tDy\geq 0$ for any y$\in \mathbb{R}^d$ 
+                \item $0\leq y^tDy=$\begin{pmatrix}
+                y1&..&y_n
+                \end{pmatrix}\begin{pmatrix}
+                \lambda_1 &0&...&0\\
+                ...&...&...&...\\
+                0&...&...&\lambda_n
+                \end{pmatrix}\begin{pmatrix}
+                y1\\...\\y_n
+                \end{pmatrix}=$\Sigma_{i=1}^{n}y_i^2\lambda_i$
+                \item we know that regardless of what vector we chose for y this must hold, so for instance if we chose our Y to be zeros in every entry but one, meaning that it must be the case that all eigenvalues are greater than or equal to zero. 
+            \end{itemize}
+        \item now consider if all the eigenvalues of A are positive we want to show that A is semidefinite  
+        \begin{itemize}
+            \item so consider a matrix A with all psotive eigenvalues
+            \item consider an arbitary vector v $\in \mathbb{R}^d$ as well as D a diagonal matrix holding the eigenvalues of A
+            we can see that \\ $v^tDv=$\begin{pmatrix}
+            v_1&..&v_n
+            \end{pmatrix}
+            \begin{pmatrix}
+            \lambda_1 &... &0\\
+            0& ... &0\\
+            0& ... &\lambda_n\\
+            \end{pmatrix}
+            \begin{pmatrix}
+            v_1\\..\\v_n
+            \end{pmatrix}=$\Sigma_{i=1}^{n}v_i^2\lambda_i$ since we know that $v_i^2\geq 0$ is always true and all the eigen values are non-negative it must be the case that $\Sigma_{i=1}^{n}v_i^2\lambda_i\geq 0$ meaning that $v^tDv\geq 0$ for any vector V$\in \mathbb{R}^d$ and thus that A is postive semi defininte
+        \end{itemize}
+        \end{enumerate}
+        }
+        \item show that an nxn matrix with enteries of all one is postives semi definite
+        \red{
+        \begin{itemize}
+            \item let V=\begin{pmatrix}
+            1&1&...&1\\...&..&...&...\\1&1&...&1
+            \end{pmatrix} since all the coloms of V are repreates of eachother we know that they are not linearly depedint and rank(V)=1
+            \item thus we know V will have zero as an eigenvalue with multiplcaity zero 
+            \item call v=\begin{pmatrix}
+            1&...&1
+            \end{pmatrix}
+            \item now note that V can be expressed as
+            $V=\begin{pmatrix}
+            1\\...\\1
+            \end{pmatrix}\begin{pmatrix}
+            1&...&1
+            \end{pmatrix}=v^tv$ so thus we can see that $Vv=vv^tv=v||v||^2$ meaning that $||v||^2$ will be an eigen value of V, we can see further that $||v||^2=\Sigma_{i=1}^{n}1^2=\Sigma_{i=1}^{n}1=n$
+            \item thus V will have an eigenvalue of n. 
+            \item finally we know thhat the sum of the multiplcites of the eigen values of V can at most be n, and we saw that 0 has mutliplicty n-1 and n has mutliplicty at least one. meaning that 0, n are the only possible eigen values whcih are both larger than zero. 
+            \item so we know that V has all postive eigenvalues and thus is postive semidefininte
+        \end{itemize}
+        
+        }
+        \item leet M$\in \mathbb{R}^{MxN}$ prove that A=$M^TM$ is postive semidefinite 
+    \begin{itemize}
+    \item for A to be postive semi definite it must be the case that for any vector $x\in\mathbb{R}^n$ $x^tAx\geq0$
+    \item so consider $x^tAx=x^tM^tmX=<xM,xM>\geq 0$ regardless of the values of x and m by the properties of inner products.
+    \end{itemize}
+\end{enumerate}
+\end{enumerate}
+\end{document}

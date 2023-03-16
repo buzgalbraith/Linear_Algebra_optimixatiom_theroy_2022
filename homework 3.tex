@@ -1,0 +1,340 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 3}} } \vspace{0.2cm}\\
+Due September 25th at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=3.1]
+    \item  Let L : $\mathbb{R}^m \rightarrow \mathbb{R}^n$ be a linear transformation. Prove that:
+\begin{enumerate}
+    \item prove KER(L) is a subspace of $\mathbb{R}^M$
+    \blue{
+    \begin{itemize}
+        \item to prove that something is a subspace we need to things .
+        \item first we must show it is closed under addition
+        \begin{itemize}
+            \item consider arbitrary vectors $x,y\in KER(L)$
+            \item we know that $Lx=0$ and $Ly=0$ thus it must be the case that $Lx+Ly=L(x+y)=0$
+            which implies that $(x+y)\in KER(L)$
+            \item showing that it is closed under addition 
+        \end{itemize}
+        \item then we must show it is closed under scalar multiplication
+        \begin{itemize}
+            \item consider arbitrary vector $x\in KER(L)$ and scalar $y\in \mathbb{R}$
+            \item we know $Lx=0$ so we can multiply y times both sides to get $y(Lx)=L(yx)=0$ which implies that $yx\in KER(L)$
+        \end{itemize}
+        \item  thus KER(L) is a subspace of $\mathbb{R}^M$
+        {\hfill$\square$}
+    \end{itemize}
+    }
+    \item prove IMG(L) is a subspace of $\mathbb{R}^N$
+    \blue{
+    \begin{itemize}
+        \item to prove that something is a subspace we need to things .
+        \item first we must show it is closed under addition
+        \begin{itemize}
+        \item consider arbitrary vectors $x,y\in IMG(L)$
+        \item this implies $\exists u,v\in \mathbb{R}^n|Lu=x,Lv=y$ thus $Lu+Lv=L(u+v)=x+y$ where as the real numbers are closed under addition $(u+v)\in \mathbb{R}^n$ thus there exists a vector $(u+v)\in \mathbb{R}^n$ such that $L(u+v)=x+y$ and therefore $x+y\in img(L)$
+        \end{itemize}
+        \item then we must show it is closed under scalar multiplication
+        \begin{itemize}
+            \item consider arbitrary vector $x\in IMG(L)$ and $y\in \mathbb{R}$
+            \item this implies $\exists u\in \mathbb{R}^n|Lu=x$ we can multiply both sides by y to get $y(Lu)=L(yu)=yx$ where as the real numbers are closed under scalar multiplication $(yu)\in \mathbb{R}^n$ thus there exists a vector $(yu)\in \mathbb{R}^n$ such that $L(yu)=yx$ and therefore $yx\in img(L)$
+        \end{itemize}
+        \item thus IMG(L) is a subspace of $\mathbb{R}^N$
+        {\hfill$\square$}
+    \end{itemize}
+    }
+\end{enumerate}    
+    
+
+
+
+
+
+\end{enumerate} 
+\begin{enumerate}[label=3.2]
+\item Consider a matrix $a\in \mathbb{R}^{MxN}$ and denote by $(c_1, . . . c_n)$ its columns
+(these are vectors in $\mathbb{R}^n$). Prove the equality of the sets  Im(A) = Span($c_1, . . . , c_n)$.
+\blue{
+  \begin{itemize}
+      \item to show set equality we want to show that each set is a subset of the other. 
+      \item first lets show $im(A)\subseteq span(c_1..c_n)$
+      \begin{itemize}
+          \item consider an element $x\in im(A)$
+          \item we know $\exists y\in \mathbb{R}^n|Ay=x$ this can be expanded as \begin{pmatrix}
+          c_1 & .... & c_n
+          \end{pmatrix}
+          \begin{pmatrix}
+          y_1\\
+          ...\\ 
+          y_n
+          \end{pmatrix}
+          \item where each $c_i \in \mathbb{R}^m $ and each $y_i\in \mathbb{R}$
+          \item thus we get the output matrix \begin{pmatrix}
+          y_1c_1 \\ .... \\ y_n c_n
+          \end{pmatrix} as we know all the $y$s are real numbers this vector is a lienar combiation of the coloms and thus in the span. whcih shows $im(A)\subseteq span(c_1..c_n)$
+      \end{itemize}
+      \item next lets show $span(c_1...c_n)\subseteq im(A)$
+      \begin{itemize}
+          \item consider a vector $x\in span(c1..cn)$ this implies $\exists y_1..y_n\in \mathbb{R}$ such that $y_1c_1...y_nc_n=x$ but as we know a=\begin{pmatrix}
+          c_1 & .... & c_n
+          \end{pmatrix} we can deffine a new matrix $y\in \mathbb{R}^n:y=\begin{pmatrix}
+          y_1\\
+          ...\\ 
+          y_n
+          \end{pmatrix}$ so thus we can write $Ay=y_1c_1...y_nc_n=x$ which implies $x\in img(A)$
+          \item meaning that $span(c_1...c_n)\subseteq im(A)$
+      \end{itemize}
+      \item thus we can see that $span(c_1...c_n)=im(A)$
+      {\hfill$\square$}
+  \end{itemize}
+ }
+ \end{enumerate}
+\begin{enumerate}[label=3.3]
+\item
+let $A=\begin{pmatrix}
+5a - 2 & 3a & 3a - 3\\
+-4a + 2 & -3a + 1&  -2a + 2\\
+-4a + 2 & -3a &  -2a + 3
+\end{pmatrix}$ where $a\in\mathbb{R}$
+\begin{enumerate}[label = (a)]
+    \item Determine the rank of A for all values of $a\in \mathbb{R}$. (Remember that you can use linear
+operations on rows and columns.)
+matrix”?)
+\blue{
+\begin{itemize}
+    \item \begin{pmatrix}
+5a - 2 & 3a & 3a - 3\\
+-4a + 2 & -3a + 1&  -2a + 2\\
+-4a + 2 & -3a &  -2a + 3
+\end{pmatrix} we can subtract row 3 from row 2. 
+
+\item\begin{pmatrix}
+5a - 2 & 3a & 3a - 3\\
+0  &  1&  -1\\
+-4a + 2 & -3a &  -2a + 3
+\end{pmatrix} then we add row 3 to row 1 
+\item\begin{pmatrix}
+a  & 0 & a\\
+0  &  1&  -1\\
+-4a + 2 & -3a &  -2a + 3
+\end{pmatrix} 
+\item so this yields the following system of linear equations 
+x(a)+y(0)=-4a+2, 0(x)+y=-3a, x(a)-y=-2a+3
+\item this tells us y=-3a, and x(a)=-4a+2
+\itme here we muse def fine two cases a=0 and $a\neq=0$ 
+\item if a=0 our matrix becomes \item\begin{pmatrix}
+0  & 0 & 0\\
+0  &  1&  -1\\
+2 & 0 &  0
+\end{pmatrix}it is trivial to see in this case that $0\text{col 1}-1\text{col 2}=\text{col 3}$
+and further that col 1 and col 2 are linearly independent. thus the rank of the matrix with a=0 is 2.  
+\item on the other hand if $a\neq 0$ we can devide by a
+meaning x=$\frac{-4a+2}{a}$
+\item for this to be the case $\frac{-4a+2}{a}(a)-2=a+3$ must hold, so that is 
+\item $\frac{-4a+2}{a}(a)+3a=-2a+3$ so that is $-4a+2+3a=-a+2$ that is $-a+2=-2a+3$ meaning that $a=1$
+\item so when $a=1$ our matrix becomes \item\begin{pmatrix}
+1 & 0 & 1\\
+0  &  1&  -1\\
+-2 & -3 &  1
+\end{pmatrix} it is clear that 1(col 1)-1(col 2)=col 3 and further that col 1 and col 2 are linearly independent thus the rank of matrix A with a=1 is 2. 
+we can see $col_3\in span(col_1,col_2)$ so the rank(A)=2
+\item further as it is clear that $a=1$ is the only condition that solves the linear system. we know that for all if($a\neq 0 \land a\neq 1)$ rank(A)=3 
+\end{itemize}
+{\hfill$\square$}
+}
+
+
+\end{enumerate}
+\begin{enumerate}[label = (b)]
+    \item For a = 0, provide a basis of Ker(A).
+\end{enumerate}
+\blue{
+\begin{itemize}
+\item so we would like to find a vector $x\in \mathbb{R}^M$ such that Ax=0
+\item   from last question we have \begin{bmatrix}[ccc|c]
+   a & 0 & a & 0 \\
+   0 & 1 &  -1 & 0 \\
+   3a+2 & 0 & 3 & 0 \\
+\end{bmatrix} and since a=0
+\begin{bmatrix}[ccc|c]
+   0 & 0 & 0 & 0 \\
+   0 & 1 &  -1 & 0 \\
+   2 & 0 & 3 & 0 \\
+\end{bmatrix}
+\item we can see y=z and 2x+3z=0 implying that $x=\frac{-3}{2}y$ so a vetor in our null space could be $v=\begin{pmatrix}
+\frac{-3}{2}\\1\\1
+\end{pmatrix}$
+\item further as we showed above when a=0, the rank(A)=2, and by the rank nullity theorem, it is clear that the dimension of the the null space should thus be 1. therefore any single vector should be a basis for the kernel thus $v=\begin{pmatrix}
+\frac{-3}{2}\\1\\1
+\end{pmatrix}$ is a basis for the kernel{\hfill$\square$}
+\end{itemize}
+}
+
+\end{enumerate}
+\begin{enumerate}[label = (c)]
+\item for a = 0, provide a basis of Im(A). (And prove it is indeed a basis.)
+\blue{
+\begin{itemize}
+    \item for a=0 our A matrix becomes A=$\begin{bmatrix}[ccc]
+   0 & 0 & 0  \\
+   0 & 1 &  -1  \\
+   2 & 0 & 3  \\
+\end{bmatrix}$
+\item it is clear that if we deffine u= $\begin{bmatrix}[c]
+   0   \\
+   0   \\
+   2    \\
+\end{bmatrix}$ and v=$\begin{bmatrix}[ccc]
+    0   \\
+    1  \\
+    0   \\
+\end{bmatrix}$ that $\frac{3}{2}u-1v=\frac{3}{2}\begin{bmatrix}[c]
+   0   \\
+   0   \\
+   2    \\
+\end{bmatrix}-\begin{bmatrix}[ccc]
+    0   \\
+    1  \\
+    0   \\
+\end{bmatrix}=\begin{bmatrix}[ccc]
+    0   \\
+    -1  \\
+    3   \\
+\end{bmatrix}$
+\item thus we can see that $col_3\in span(col_1,col_2)$ 
+\item so consider $\{\begin{bmatrix}[c]
+   0   \\
+   0   \\
+   2    \\
+\end{bmatrix},\begin{bmatrix}[ccc]
+    0   \\
+    1  \\
+    0   \\
+\end{bmatrix}\}$ as a possible basis for the img(A) it is clear that they are linearly independent, and further as they are two linearly independent vectors it is clear that $span(\{\begin{bmatrix}[c]
+   0   \\
+   0   \\
+   2    \\
+\end{bmatrix},\begin{bmatrix}[ccc]
+    0   \\
+    1  \\
+    0   \\
+\end{bmatrix}\}=\mathbb{R}^2$
+\item thus they are a basis for the img(a)\\{\hfill$\square$}
+\end{itemize}}
+\end{enumerate}
+\newpage
+\begin{enumerate}[label=3.4]
+\item We will prove, in steps, that $ker(L) = ker(L^{t}L)$ for any $L\in\mathbb{R}^{nxm}$
+\end{enumerate}
+\begin{enumerate}[label = (a)]
+    \item Prove that $ker(L) \subseteq ker(L^TL)$
+    \blue{
+    \begin{itemize}
+        \item consider $x\in \mathbb{R}^M,ker(L)$ this implies that $Lx=0$
+        \item so thus by asociativity $(L^TL)x=L^t(Lx)=L^t0=0\Rightarrow x\in ker(L^TL)${\hfill$\square$}
+    \end{itemize}
+    }
+\end{enumerate}
+\begin{enumerate}[label = (b)]
+    \item prove that if y is a vector satisfying $y^T y$ = 0, then y = 0
+    \blue{
+    \begin{itemize}
+        \item consider for the sake of contradiction a vector $y\in \mathbb{R}^{nx1}$ such that $y^T y$ = 0, then $y \neq 0$
+        \item then we know $y^Ty=\begin{pmatrix}
+        y_1&...&y_n
+        \end{pmatrix}\begin{pmatrix}
+        y_1\\...\\y_n
+        \end{pmatrix}=\Sigma_{i=1}^{n}(y_i)^2$ but as $y\in \mathbb{R}^{nx1}$ we know that $\forall i\in [1,n] (y_i)^2\geq 0$ and thus as we know $y^T y=\Sigma_{i=1}^{n}(y_i)^2=0$ it must be the case that all $(y_i)^2=0$ meaning that all $y_i=0$
+        \item this how ever contradicts our assumption that y is not zero. {\hfill$\square$}
+    \end{itemize}
+    }
+\end{enumerate}
+\begin{enumerate}[label = (c)]
+    \item Use part (b) to deduce that if x is a vector satisfying $x^T L^T Lx = 0$, then Lx = 0.
+    \blue{
+    \begin{itemize}
+        \item suppose for the sake of contradiction that $L\in \mathbb{R}^{nxm}$ and $x\in \mathbb{R}^n$  $x^T L^T Lx = 0$ and  $Lx \neq 0$.
+        \item we know by associativity  $x^T L^T Lx=(x^T L^T) (Lx) = 0$, means that either $(x^T L^T)=0$ or $(Lx)=0$ as we assumed $Lx\neq 0$ it $(x^T L^T)=0$ must therefore be true
+        \item we know that $(x^T L^T)=\begin{pmatrix}
+        x_1 &... x_n
+        \end{pmatrix}
+        \begin{pmatrix}
+        L_{1,1} &...& L_{1,m}\\
+        ... &...& ...\\
+        L_{n,1} &...& L_{n,m}\\
+        \end{pmatrix}=\begin{pmatrix}
+        \Sigma_{i=1}^{n}x_iL_{1,i}&...&\Sigma_{i=1}^{n}x_iL_{m,i}
+        \end{pmatrix}$ and by assumption $\begin{pmatrix}
+       \Sigma_{i=1}^{n}x_iL_{1,i}&...&\Sigma_{i=1}^{n}x_iL_{m,i}
+        \end{pmatrix}=\begin{pmatrix}
+        0&...&0
+        \end{pmatrix}$
+        \item further notice that $Lx=\begin{pmatrix}
+        L_{1,1} &...& L_{1,n}\\
+        ... &...& ...\\
+        L_{m,1} &...& L_{m,n}\\
+        \end{pmatrix}\begin{pmatrix}
+        x_1 \\...\\x_n
+        \end{pmatrix}=\begin{pmatrix}
+       \Sigma_{i=1}^{n}x_iL_{1,i}&...&\Sigma_{i=1}^{n}x_iL_{m,i}
+        \end{pmatrix}$ thus $(x^T L^T)=(Lx)=0$ must be true 
+        \item but this is a contradiction of our earlier assumption that $Lx\neq 0${\hfill$\square$}
+    \end{itemize}
+    
+    }
+\end{enumerate}
+\begin{enumerate}[label = (d)]
+    \item Use part (c) to deduce that $ker(L^T L)\subseteq Ker(L)$
+    
+    \blue{
+    \begin{itemize}
+        \item consider $x\in ker(L^tL),\mathbb{R}^{n}$ this means $(L^{T}L)x=0$ then we can multiply both sides by $x^t$ to see $x^T(L^{T}L)x=0$ by part c this tells us Lx=0 meaning that $x\in ker(L)$ 
+    {\hfill$\square$}
+    \end{itemize}
+    }
+\end{enumerate}
+
+
+\begin{enumerate}[label=3.5]
+\item  We will prove, in steps, that $rank(L) = rank(L^{T})$ for any $L \in \mathbb{R}^{mxn}$
+\begin{enumerate}
+    \item Prove that $rank(L) = rank(L^tL)$.
+    \blue{
+    \begin{itemize}
+        \item for a matrix $L \in \mathbb{R}^{mxn}$ we know that Rank(L)=M-$dim(ker(L))$ and similarly Rank($L^TL$)=M-$dim(ker(L^TL))$ further as we showed above $ker(L)=ker(L^TL) \Rightarrow dim(ker(L))=dim(ker(L^TL))\rightarrow M-dim(ker(L^TL))=M-dim(ker(L))\rightarrow Rank(L)=Rank(L^TL)$
+        {\hfill$\square$}
+    \end{itemize}}
+    \item Use part (a) to deduce that that rank(L) = $rank(L^T)$
+        \blue{
+    \begin{itemize}
+        \item we know that $Rank(L^TL)=Rank(L)$ from last question. furhter from class we know $rank(L^TL)\leq min(rank(L),rank(L^T))$ so combining this we can see $rank(L^TL)=rank(L)\leq min(rank(L),rank(L^T))\leq rank(L^T)$ which gives us $rank(L)\leq rank(L^T)$
+        \item using the opposite of our above condition it is clear that $Rank(LL^T)=rank(L^T)$ and from class that $rank(LL^T)\leq min(Rank(L),rank(L^t))$ meaning that $rank(L^T)=rank(LL^T)\leq min(rank(L),rank(L^T))\leq rank(L)$ which gives us $rank(L^T)\leq rank(L)$
+        \item so from the past two lines we have $rank(L)\leq rank(L^T)$ and $rank(L^T)\leq rank(L)$ for both of these condtions to hold it must be the case that $rank(L)= rank(L^T)$
+        {\hfill$\square$}
+    \end{itemize}}
+\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,90 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 5}} } \vspace{0.2cm}\\
+Due October 8th at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=5.1]
+    \item Compute an orthonormal basis of R3 using the Gram-Schmidt algorithm
+starting from the linearly independent family (x1, x2, x3) where x1 = (1, 2, 2), x2 = (1, 0, 1) and
+x3 = (1, 2, 0)
+\blue{
+\begin{itemize}
+    \item the first step is to normalize the first vector. thus we can define $v_1=(\frac{1}{3},\frac{2}{3},\frac{2}{3})$
+    \item next we want to find $P_{v_1}(x_2)=<v_1,x_2>v_1=(\frac{1}{3}+\frac{2}{3})(\frac{1}{3},\frac{2}{3},\frac{2}{3})=(\frac{1}{3},\frac{2}{3},\frac{2}{3})$
+    \item so we can compute $v_2^*=x_2-P_{v_1}(x_2)=(1,0,1)-(\frac{1}{3},\frac{2}{3},\frac{2}{3})=(\frac{2}{3},-\frac{2}{3},\frac{1}{3})$ this already has a norm of one so  $v_2=(\frac{2}{3},-\frac{2}{3},\frac{1}{3})$
+    \item next we wnat to find $P_{v_1,x_2}(x_3)=(\frac{1}{3}+\frac{4}{3})(\frac{1}{3},\frac{2}{3},\frac{2}{3})+(\frac{2}{3}-\frac{4}{3})(\frac{2}{3},-\frac{2}{3},\frac{1}{3})=(\frac{5}{9},\frac{10}{9},\frac{10}{9})+(\frac{-4}{9},\frac{4}{9},\frac{-2}{9})=(\frac{1}{9},\frac{14}{9},\frac{8}{9})$
+    \item then we can find $v_3^*=x_3-P_{v_1,x_2}(x_3)=(1,2,0)-(\frac{1}{9},\frac{14}{9},\frac{8}{9})=(\frac{8}{9},\frac{4}{9},-\frac{8}{9})$
+    \item we can see that $||v_3^*||=\frac{4}{3}$ so we can normalize and get $v_3=(\frac{2}{3},\frac{1}{3},-\frac{2}{3})$
+    \item so finally our orthonaml bassis is $\{v_1,v_2,v_3\}=\{(\frac{1}{3},\frac{2}{3},\frac{2}{3}),(\frac{2}{3},-\frac{2}{3},\frac{1}{3}),(\frac{2}{3},\frac{1}{3},-\frac{2}{3})\}$
+\end{itemize}
+
+}
+\end{enumerate}    
+    
+
+
+
+\begin{enumerate}[label=5.2]
+\item Let v = (1, 1, 1) $\in\mathbb{R}^3$ and define $U = \{x \in \mathbb{R}^3 : x \perp v\} = Span(v)^{\perp}$
+\begin{enumerate}
+    \item Compute an orthonormal basis of U 
+    \blue{
+    \begin{itemize}
+        \item first of all we want to show that $span(v)$ is a subspace of $\mathbb{R}^3$
+        \begin{enumerate}
+            \item consider $x,y\in span(v)$ for some arbitrary scalars we have $(\alpha_1 (1),\alpha_2 (1),\alpha_3 (1))+(\beta_1 (1),\beta_2 (1),\beta_3 (1))=(\alpha_1(1)+\beta_1(1),\alpha_2(1)+\beta_2(1),\alpha_3(1)+\beta_3(1))=((\alpha_1+\beta_1)(1),(\alpha_2+\beta_2)(1),(\alpha_3+\beta_3)(1))\in span(v)$
+            \item consider $x\in span(v), \beta \in \mathbb{R}$ we know that $\beta x= \beta(\alpha_1 (1),\alpha_2 (1),\alpha_3 (1))=(\beta\alpha_1 (1),\beta\alpha_2 (1),\beta\alpha_3 (1))\in span(v)$
+            \item thus we can see that $span(v)$ is closed under vector addition and scalar multiplication and is a subspace.
+        \end{enumerate}
+        \item as we know span(v) is a subspace of $\mathbb{R}^3$ we know that $span(v)^{\perp}$ is a subspace of $\mathbb{R}^3$
+        \item by definition $dim(span(v_1))=1$ as it only contains one linearly independent vector.
+        \item further we know that $dim(span(v)^{\perp})=dim(span(\mathbb{R}^3))-dim(span(v))=3-1=2$
+        \item further we know that$U=span(v)^{\perp}$  meaning that $dim(U)=dim(span(v)^{\perp})=2$ so that is any two linearly independent vectors in U will span u.
+        \item consider $u_1=(1,1,-2), u_2=(1,-1,0)$ we can first of all see that $<u_1,v>=0$ and $<u_2,v>=0$ and further that $u_1\not \in span(u_2)$ as there is no scalar except for zero that you can multiply with -2 to get zero 
+        \item so know we can apply gram shcmidt. 
+        \item first we normalize $u_1$ we can see that $||u_1||=\sqrt{1+1+4}=\sqrt{6}$ meaning that $v_1=(\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}},-\frac{2}{\sqrt{6}})$
+        \item now we can find $p_{v_1}(u_2)=<v_1,u_2>v_1=(\frac{1}{6}-\frac{1}{6})(v_1)=0$
+        \item thus $v_2^*=x-P_{v_1}(u_2)=x$ 
+        \item so we just have to normalize $u_2$ which is ||$u_2||=\sqrt{2}$ meaning that $v_2=(\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}},0)$
+        \item thus we see that $\{v_1,v_2\}=\{(\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}},-\frac{2}{\sqrt{6}}),(\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}},0)\}$ form an orthonomarl basis for U
+    \end{itemize}
+    }
+    \item Compute an orthonormal basis of $U^\perp$
+    \blue{
+    \begin{itemize}
+        \item we know by definition $U=span(v)^\perp$ this implies that $U^\perp=span(v)$
+        \item we already argued last time that dim(span(v))=1=$dim(u^\perp)$
+        \item thus any vector in span(v) will be a basis. 
+        \item the natural choice is v. 
+        \item so to find an orthonomal basis of $U\perp$ we normalize v
+        \item $||v||=\sqrt{3}$
+        \item thus $v_3=(\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}})$
+        \item we thus know that $\{v_3\}=\{(\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}})\}$ form an orthonormal basis for $U^\perp$
+    \end{itemize}
+    }
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

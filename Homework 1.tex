@@ -1,0 +1,210 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 1}} } \vspace{0.2cm}\\
+Due September 11 at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=1.1]
+    \item are the following sets sub spaces of $\mathbb{R}^{3}$? Justify your answer. If yes,
+state both the dimension of the subspace and a basis of the subspace
+\begin{enumerate}
+    \item $E_1=\{(x,y,z)\in \mathbb{R}^3|2x-y-z=0\}$
+    \blue{
+    \begin{enumerate}
+        \item firstly it is a non empty subset of $\mathbb{R}^3$ as can be seen by the fact that $(0,0,0)\in E_1\subseteq \mathbb{R}^3$
+        \item now we want to show it is closed under addition. 
+        \begin{itemize}
+            \item consider two vectors $x,y\in E_1$ it must be the case that  $2x_1-x_2-x_3=0$ and $2y_1-y_2-y_3=0$ adding these we can see $x+y=2x_1+2y_1-x_2-y_2-x_3-y_3=2(x_1+y_1)-(x_2+y_2)-(x_3+y_3)=0$ so it is closed under addition 
+        \end{itemize}
+        \item now we want to show it is closed under scalar multiplication 
+        \begin{itemize}
+            \item so consider a vector $w=2x-y-z\in E_1$ and a scalar $\lambda \in \mathbb{R}$ it must be the case that $\lambda*w=\lambda(2x-y-z)=\lembda*0=0$ so it is indeed closed under scalar multiplication 
+        \end{itemize}
+    \item thus all three conditions are met and $E_1$ is a subspace of $\mathbb{R}^3$
+    \item  this is dimension 2 as the value of the z coordinate is determined linearly by the other three values.
+    \item a basis could be $\{(1,0,2), (0,1,-1)\}$
+    \end{enumerate}
+    }
+    \item $E_2=\{(x,y,z)\in \mathbb{R}^3|-x + 3y + z = 1\}$
+
+    \blue{
+        \begin{itemize}
+        \item this is not a sub-space. 
+        \item Consider the vector $w=(1,1,-1)$ clearly $w\in E_2$ however notice that $0\in \mathbb{R}$ yields $0*w=0\neq 1$ thus it is not a sub-space
+\end{itemize}
+    
+    }
+    \item $E_3=\{(x,y,z)\in \mathbb{R}^3|x^2+y^2+z=0\}$
+    \blue{
+    \begin{itemize}
+        \item this is not a sub-space.
+        \item consider for instance the vector $(1,2,-5)=w\in E_3$ we can see $(1)^2+2^2-5=0$
+        \item but if we scale this vector by 2 for instance we get $2w=2(1,2,-5)=(2,4,-10)=2^2+4^2-10=4+16-10=10\neq 0$ thus $2w\not \in E_3$ 
+    \end{itemize}
+    }
+    \item $E_4=\{(x,y,z)\in \mathbb{R}^3|x+y+z=0 \text{ and } x-y=0\}$
+    \blue{
+    \begin{itemize}
+        \item this is a subspace
+        \item first we can see that the point $(0,0,0)$ is included so it is non empty
+        \item so consider the vectors $u,v\in E_4$ adding them we see $u+v=(u_1+v_1,u2+v_2,u3+v_3)$ which can be expressed as  $u_1+v_1,u2+v_2,u3+v_3=(u_1+u_2+u_3)+(v_1+v_2+V_3)=0+0=0$ and $(u_1+v_1)-(u_2+v_2)=(u_1-u_2)+(v_1-v_2)=0+0=0$ thus it is closed under addition. 
+        \item now we want to show this is closed under scalar multiplication. Consider $u\in E_4$ and $\alpha \in \mathbb{R}$ we can see that $\alpha w=(\alpha u_1, \alpha u_2, \alpha u_3)$ and thus $\alpha u $ has the property $\alpha u_1, \alpha u_2, \alpha u_3= \alpha(u_1+u_2+u_3)=\alpha (0)=0$. and $\alpha(x-y)=\alpha(0)=0$ so it is closed under scalar multiplication 
+        \item 1 dimension 
+        \item a basis could be $\{(1,1,-2)\}$
+    \end{itemize}
+    }
+    
+\end{enumerate}
+\end{enumerate} 
+\begin{enumerate}[label=1.2]
+\item let us define the vectors $e_1...e_n$ such that $\forall i\in [0,n] e_i$ has a 1 at index i and 0s in all other indices. 
+\begin{enumerate}
+    \item prove that $e_1..e_n$ form a basis of $\mathbb{R}^n$ use this fact to compute the dimension of $\mathbb{R}^n$
+    \blue{
+    \\ to show the family of vectors $e_1...e_n$ is a basis for $\mathbb{R}^n$ we must prove two things 
+    \begin{enumerate}
+        \item first that $e_1...e_n$ are linearly independent 
+        \begin{itemize}
+            \item assume for the sake of contradiction that t$e_1...e_n$ are linearly dependent 
+            \item this would imply $\exists \alpha_1...\alpha_n$ that are not all equal to zero such that $\alpha_1*e_1+...+\alpha_n*e_n=0$ but we know that the vectors $e_i=(0,0...1,0...0) $ so we can write $\alpha_1*e_1+...+\alpha_n*e_n=\alpha_1(1,...0)+\alpha_n(0,...1)=(\alpha_1,...0)+...+(0...\alpha_n)=(\alpha_1,\alpha_2...\alpha_n)$ but for linear dependence it must be the case that $(\alpha_1,\alpha_2...\alpha_n)=(0,0,0...0)$ which contradict the definition of not all $\alpha$'s equaling zero.
+        \end{itemize}
+        \item next we want to show that  $span(e_1...e_n)=\mathbb{R}^n$
+        \begin{itemize}
+            \item assume for the sake of contradiction that there exists a vector $x\in\mathbb{R}^n$ which is not is not in $span(e_1...e_n)$
+            \item this implies there does not exist a group of $\alpha_1...\alpha_n \in \mathbb{R}$ such that $\alpha_1*e_1+\alpha_2*e_2+....\alpha_n*e_n=(x_1,x_2....x_n)=x$ we can write $\alpha_1*e_1+...+\alpha_n*e_n=\alpha_1(1,...0)+\alpha_n(0,...1)=(\alpha_1,...0)+...+(0...\alpha_n)=(\alpha_1,\alpha_2...\alpha_n)$ so that is there exits no set of $\alpha_1...\alpha_n$ such that $(\alpha_1,\alpha_2...\alpha_n)=(x_1...x_n)$ but as we put no restrictions on $\alpha$ we could set $\alpha_i=x_i \forall i\in[0,n]$ which would make $(\alpha_1,\alpha_2...\alpha_n)=(x_1...x_n)$ true thus we have a contradiction
+        \end{itemize}
+        \item thus we have shown that $e_1...e_n$ are a basis for $\mathbb{R}^n$
+        \item finally as we have shown that a basis for $\mathbb{R}^n$ can be formed with n vectors thus all basis of $\mathbb{R}^n$ admit n vectors meaning the dimension of $\mathbb{R}^n$ is n  
+    \end{enumerate}
+    }
+    \item Give an example of a line in $\mathbb{R_n}$ using a span of a subset of $\{e_1, . . . , e_n\}$
+    
+    \blue{
+    \begin{itemize}
+        \item we call a subspace S a line if $dim(s)=1$
+        \item so a line in $\mathbb{R}^n$ could be $S=span(e_1)$
+        \item and then we show S is a subspace of $\mathbb{R}^n$
+        \begin{itemize}
+            \item we defined S as $span(e_1)$ meaning the span is described by 1 vector and thus has dimension 1. 
+            \item further the $(1,0....0)\in span(e_1)\subseteq \mathbb{R}^n$ so it is a non empty subset of  $ \mathbb{R}^n$
+            \item it is also clearly closed under addition. consider $x=(\alpha,0,...0)\in S$ and $y=(\beta,0,...0)\in S$ where $\alpha,\beta \in \mathbb{R}$ $x+y=(\alpha+\beta,0,0...0)$ we know $\alpha+\beta\in \mathbb{R}$ by the properties of real numbers thus $x+y\in S$ 
+            \item we can also show it is closed under scalar multiplication consider  $x=(\alpha,0,...0)\in S$  where $\alpha,\beta \in \mathbb{R}$ then $\beta*x=(\alpha*\beta,0,...0)$we know $\alpha*\beta\in \mathbb{R}$ by the properties of real numbers thus $\beta*x\in S$ 
+        \end{itemize}
+    \end{itemize}
+    }
+     \item Give an example of a hyperplane  in $\mathbb{R_n}$ using a span of a subset of $\{e_1, . . . , e_n\}$
+    \blue{
+    \begin{itemize}
+     \item we call a subspace S a hyperplane if $dim(s)=n-1$
+     \item so consider the sub-set $S=span(e_2...e_n)$
+     \item we want to show it is a subspace now 
+     \begin{enumerate}
+            \item we defined S as $span(e_2...e_n)$ meaning the span is described by n-1 vector and thus has dimension n-1. 
+            \item further the $(0,1,1...1)\in span(e_2...e_n)\subseteq \mathbb{R}^n$ so it is a non empty subset of  $ \mathbb{R}^n$
+            \item it is also clearly closed under addition. consider $x=(0,\alpha_2,...\alpha_n)\in S$ and $y=(0,\beta_2,...\beta_n)\in S$ where $\alpha_2...\alpha_n,\beta_2...\beta_n \in \mathbb{R}$ $x+y=(0,\alpha_2+\beta_2,...\alpha_n+\beta_n)$ we know $\alpha_i+\beta_i\in \mathbb{R} \forall i$ by the properties of real numbers thus $x+y\in S$ 
+            \item we can also show it is closed under scalar multiplication consider $x=(0,\alpha_2,...\alpha_n)\in S$  where $\alpha,\beta \in \mathbb{R}$ then $\beta*x=(0,\beta*\alpha_2,...\beta*\alpha_n)$we know $\alpha_i*\beta\in \mathbb{R}\forall i$ by the properties of real numbers thus $\beta*x\in S$ 
+     \end{enumerate}
+    \end{itemize}
+    }
+\end{enumerate}
+\begin{enumerate}[label=1.3]
+\item let u, v be two vectors in $\mathbb{R}^2$. Prove that either they are linearly dependent, or otherwise they span the entirety of  $\mathbb{R}^2$
+\blue{
+\begin{enumerate}
+    \item first let us show if $u,v\in \mathbb{R}^2$ are not linearly dependent they span the entirety of  $\mathbb{R}^2$
+    \begin{itemize}
+        \item suppose for the sake of contradiction there is a vector $x\in \mathbb{R}^2$ such that $x\not \in span(u,v)$
+        \item so that is there can not exist $\alpha,\beta\in \mathbb{R}$ such that $\alpha u+ \beta v=x$ if we scale both sides by an arbitrary $\gamma \in \mathbb{R}$ the statement will still hold yielding  $\gamma(\alpha u+ \beta v)=\gamma*\alpha u + \gamma*\beta v=\gamma(x)$
+        \item then we can define new $\lambda\in\mathbb{R}|\lambda=\gamma*\alpha$ and $\kappa\in\mathbb{R}|\kappa=\gamma*\beta$ meaning there do not exist $\lambda, \kappa, \gamma \in \mathbb{R}|\lambda u +\kappa v = \gamma x$
+        \item this can be re-expressed as $\lambda u +\kappa v -\gamma x=0$ and let $\omega=-\gamma$ finally yielding that there can not be $\lambda, \kappa, \omega \in \mathbb{R}|\lambda u +\kappa v +\omega x=0$. This is the definition of linear Independence. 
+        \item so in other words given $u,v\in \mathbb{R}^2$ are linearly independent and $x\in\mathbb{R}^2$ and $x\not \in span(u,v)$ it must be the case that $u,v,x$ are all linearly independent. Call $u,v,x$ a family of vectors W.   but we know this can not be the case as the $dim(\mathbb{R}^2)=2$ and thus any linearly independent family of vectors in $\mathbb{R}^2$ can contain at most 2 vectors. Thus we have a contradiction. 
+    \end{itemize}
+    \item second let us show that if $u,v\in \mathbb{R}^2$ do not span $\mathbb{R}^2$ they are linearly dependant.  
+    \begin{itemize}
+        \item assume for the sake of contraction that $u,v\in \mathbb{R}^2$ are linearly independent. 
+        \item then we know that $u,v$ are a linearly independent family of vectors in $\mathbb{R}^2$. Further we know that $dim(\mathbb{R}^2)=2$. as we know any linearly independent family of vectors within a space with the same cardinality as the dimension of the space form a basis for the space. so in other words $u,v$ must be a basis for $\mathbb{R}^2$ thus by definition if $(u,v)$ are a basis for $\mathbb{R}^2$ then $span(u,v)=\mathbb{R}^2$ which is a contradiction of our initial assumption that u,v do not span $\mathbb{R}^2$ 
+    \end{itemize}
+\item thus it must be the case that any two vectors $u,v\in\mathbb{R}^2$ must either be linearly dependant or $span(\mathbb{R}^2)$
+\end{enumerate}
+}
+\end{enumerate}
+\begin{enumerate}[label=1.4]
+\item Suppose that $x_1, . . . , x_k \in \mathbb{R}^n$ are linearly independent. Let $v \in \mathbb{R}^n$ and
+assume that $v \not\in Span(x_1, . . . , x_k)$. Prove that $x_1, . . . , x_k$, v are linearly independent
+\blue{
+\begin{itemize}
+    \item Suppose for the sake of contradiction that $(x_1...x_k)$ and $v$ are linearly dependent. 
+    \item given that they are linearly dependent we know that $\exists \alpha_1...\alpha_{k+1}:\alpha_1 x_1+....+\alpha_k x_k+ \alpha_{k+1}v=0$ where not all alphas equal zero.
+    \item this can be expressed as  $\alpha_1 x_1+....+\alpha_k x_k=-\alpha_{k+1}v$
+    \item take a second to note that given $x_1...x_k$ are linearly independent $\not \exists \alpha_1...\alpha_k\in \mathbb{R}|\alpha_1 x_1+....+\alpha_k x_k=0$ and not all alphas are zero. thus for  $\alpha_1 x_1+....+\alpha_k x_k=-\alpha_{k+1}v$to hold  without all alphas being 0 $-\alpha_{k+1}\neq 0$ must be true 
+    \item thus we can write $\alpha_1 x_1+....+\alpha_k x_k=-\alpha_{k+1}v$ as  $\frac{\alpha_1}{-\alpha_{k+1}} x_1+....+\frac{\alpha_k}{-\alpha_{k+1}}x_k=v$ but this contradicts the assumption that $v\not \in span(x1....xk)$ 
+\end{itemize}
+}
+\end{enumerate}
+
+
+
+\begin{enumerate}[label=1.5]
+\item Suppose V and W are both vector spaces of finite dimension. Consider
+the two scenarios:
+\begin{enumerate}[label=$(i)$]
+\item $V=W$
+\end{enumerate}
+\begin{enumerate}[label=$(ii)$]
+\item $dim(V) = dim(W ) and V \subseteq W$
+\end{enumerate}
+Prove the equivalence of these two scenarios. (That is, prove that scenario i occurs whenever
+scenario ii occurs, and also that scenario ii occurs whenever scenario i occurs.) 
+\blue{
+\begin{enumerate}[label=Case A]
+     \item First we want to show  $V=W \Rightarrow dim(V) = dim(W ) and V \subseteq W$
+    \begin{enumerate}
+        \item first want to show dim(v)=dim(w)
+    \begin{itemize}
+    \item given the family of linearly independent vectors$(e_1...e_n)$ form a basis for V we know that $span(e_1...e_n)=V$ and thus any vector $x\in V$ can be constructed as $\alpha_1...\alpha_n\in \mathbb{R}|\alpha_1 e_1+...+\alpha_n e_n=x$ further as we know V=W $x\in W \Rightarrow x\in V$ so thus as any vector $x\in W$ is also in V it can be constructed as  $\alpha_1...\alpha_n\in \mathbb{R}|\alpha_1 e_1+...+\alpha_n e_n=x$ in other words $span(e1...en)=V$. 
+    \item so we know that a basis of V will be a basis of W and the number of vectors in a basis equal the dimension of the space thus $e_1...e_n$ form a basis for V and W $\Rightarrow$  
+    \end{itemize}
+    \item it is definitional that $V\subseteq W$ since V=W 
+    \item thus we have shown  $V=W \Rightarrow dim(V) = dim(W ) and V \subseteq W$
+    \end{enumerate}
+    
+\end{enumerate}
+\begin{enumerate}[label=Case B]
+\item next we want to show $dim(V) = dim(W) and V \subseteq W \Rightarrow V=W$
+\begin{itemize}
+    \item suppose for the sake of contradiction that $V\neq W$ 
+    \begin{enumerate}
+        \item first let us consider an $x\in V$ $x\not \in W$
+        \begin{itemize}
+            \item this already contradicts the assumption that $V\subseteq W$ 
+        \end{itemize}
+        \item now let us consider $y\in W$ and $y \not \in V$
+        \begin{itemize}
+        \item suppose we have a family of vectors $(e_1...e_n)$ which are linearly independent and form a basis for V. We know that $V\subseteq W$ thus any vector in $x\in V \Rightarrow x\in W$ meaning that all $(e1...en)\in W$ further as we know $(e_1...e_n)$ are a linearly independent family of vectors within W, with the same number of vectors as the dimension of W they $(e_1...e_n)$ must be a basis for W. 
+        \item thus as we assume that $y\in W$ it must be the case that there exists some group $\alpha_1...\alpha_n\in \mathbb{R}|\alpha_1 e_1+...+\alpha_n e_n=y$, as $(e_1...e_n)$ also form a basis of V it must be the case that there also exists  some group $\alpha_1...\alpha_n\in \mathbb{R}|\alpha_1 e_1+...+\alpha_n e_n=y$ meaning that $y\in V$ contradicting our assumption that $y\not \in V$
+        \end{itemize}
+        \item thus we have shown $dim(V) = dim(W) and V \subseteq W \Rightarrow V=W$ 
+    \end{enumerate}
+    \item by showing   $dim(V) = dim(W) and V \subseteq W \Rightarrow V=W$  and $V=W \Rightarrow dim(V) = dim(W ) and V \subseteq W$ we have demonstrated that $dim(V) = dim(W) and V \subseteq W \Longleftrightarrow  V=W$
+\end{itemize}
+\end{enumerate}
+}
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}

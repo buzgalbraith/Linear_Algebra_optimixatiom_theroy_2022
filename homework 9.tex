@@ -1,0 +1,149 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 9}} } \vspace{0.2cm}\\
+Due October 16thth at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=9.1]
+\item  are the following functions convex
+\begin{enumerate}
+    \item $f(x)=1024x-2022$
+    \begin{itemize}
+       \item a function being convex is equivalent to it's Hessian matrix being Positive semi definite. \item as this is a function in $\mathbb{r}$ we know that its gradient is just it's darivative that is $\nabla_f(x)=$\begin{pmatrix} 1024\end{pmatrix}
+       \item and further it has Hessian matrix $\mathcal{H}_f(x)=$\begin{pmatrix} 0\end{pmatrix} for any values of x
+       \item we know that a matrix of demsion $1X1$ can have at most 1 eigen vectors and further it is celear that for any $y\in \mathbb{R}$ $\mathcal{H}_f(x)y=$\begin{pmatrix} 0\end{pmatrix}=0y
+       \item thus we can see that 0 is the only eigen value of the hessian matrix of f meaning it is PSD and thus f is convex
+    \end{itemize}
+    \item $f(x)=x^{11}$
+        \begin{itemize}
+    \item f(x) is not convex. 
+    \item we can see that $f'(x)=11x^10$ and $f''(x)=120(x)^{9}$ 
+    \item if we evaluate $f''(x)=120(x)^{9}$ at x=-1 then we can see that $f''(-1)=-120$
+    \item and clearly a matrix with its only value being -120 will have it's only eigne vlaue as -120, meanign that the hessian of f is not always postive semi defininte and thus f can not be covex.
+    \end{itemize}
+    \item $f(x)=x^{2022}$
+        \begin{itemize}
+        \item now if we want to consider $f(x)=x^{2022}$
+        \item we can compute it's hesian matrix as $\mathcal{H}_{f}(x)=2022(2021)(x)^{2020}$ we can see that $x^{2020}\geq $0 as the value is raised to an even power and $2022(2021)\geq 0$ meaning that $\mathcal{H}_{f}(x)=2022(2021)(x)^{2020}\geq 0$ for all values of x and thus the function is convex.  
+    \end{itemize}
+    \item $f(x)=e^x$
+        \begin{itemize}
+        \item here we can see that $\mathcal{H}_f(x)=\begin{pmatrix}e^x \end{pmatrix}$ further it is known that $e^x\geq0$ for all values of x, thus f is convex.
+    \end{itemize}
+    
+\end{enumerate}
+\newpage
+\end{enumerate}
+\begin{enumerate}[label=9.2]
+\item let $M \in\mathbb{R}^{n×n}$
+be a symmetric matrix, $b\in\mathbb{R}^{n}$
+, and $c\in\mathbb{R}$. Consider
+the quadratic function f : $\mathbb{R}$
+n $\rightarrow \mathbb{R}$ given by
+$f(x) = x^t
+Mx + <x,b> + c$.
+\begin{enumerate}
+    \item compute the gradient of f. 
+    \begin{itemize}
+        \item note that $f(x)$ can be expressed as $f(x)=\Sigma_{i=1}^{n}\Sigma_{j=1}^{n}m_{i,j}x_{i}x{j}+\Sigma_{k=1}^{n}x_kb_k$
+        \item differentiating this with respect to x yields $\nabla_f(x)=\begin{pmatrix}\Sigma_{i=1}^{n}m_{i,1}x_i+\Sigma_{k=1}^{n}m_{1,j}x_j+b_1\\...\\\Sigma_{i=1}^{n}m_{i,n}x_i+\Sigma_{k=1}^{n}M_{n,j}x_j+b_n 
+        \end{pmatrix}$ further because M is symmetric we have $\nabla_f(x)=\begin{pmatrix}2\Sigma_{i=1}^{n}m_{i,1}x_i+b_1\\...\\2\Sigma_{i=1}^{n}m_{i,n}x_i+b_n 
+        \end{pmatrix}=2Mx+b$
+    \end{itemize}
+    \item compute the hessian of f 
+        \begin{itemize}
+        \item from part a we can write the gradient vector of f(x) as  $\nabla_f(x)=\begin{pmatrix}2\Sigma_{i=1}^{n}m_{i,1}x_i+b_1\\...\\2\Sigma_{i=1}^{n}m_{i,n}x_i+b_n 
+        \end{pmatrix}$ 
+        \item differentiating this with respect to x yields. $\mathcal{H}_{f}(x)=2M$
+    \end{itemize}
+    \item  Use part (b) to prove that f is convex if and only if M is positive semidefinite
+        \begin{itemize}
+        \item 2 is just a scalar so the eigenvalues of the Hessian of f 2M will have the same sign as those of M. 
+        \item further we know that 2M is the hessian, so if M is PSD 2M is PDS and thus the hesisan matrix of f is PSD which is equivalent to the function f being convex. 
+    \end{itemize}
+    \item Use part (c) to prove that the function $g:\mathbb{R}^2
+ \rightarrow \mathbb{R}$ given by $g(x) =x_1^2-x_2^2$
+is not convex.
+    \begin{itemize}
+        \item we can see that $\nabla_{g}(x)=\begin{pmatrix} 2x_1\\-2x_2\end{pmatrix}$ 
+        \item from this we find that $\mathcal{H}_{g}(x)=\begin{pmatrix}2&0\\0&-2\end{pmatrix}$ for any value of x. 
+        \item we can see that that $\mathcal{H}_{g}(x)\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}2&0\\0&-2\end{pmatrix}\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}0\\-2\end{pmatrix}=-2\begin{pmatrix}0\\1\end{pmatrix}$ 
+        \item thus -2 is an eigenvalue of the hessian matrix of H, and there for the function g(x) is not convex.
+    \end{itemize}
+\end{enumerate}
+
+
+\newpage
+\begin{enumerate}[label=9.3]
+\item  Let$A\in \mathbb{R}^{nXm} $and$y\in\mathbb{R}^n$  For $x \in \mathbb{R}^m$
+ we define
+$f(x) = ||  Ax - y||^2$
+\end{enumerate}
+\begin{enumerate}
+    \item compute the gradient and hessian matrix
+    \begin{itemize}
+        \item notice that we can express $f(x) = ||  Ax - y||^2=<Ax-y,Ax-y>=(Ax-y)^{t}(Ax-y)=(x^tA^t-y^t)(Ax-y)=x^tA^tAx-x^tA^ty-y^tAx+y^ty=x^tA^tAx-<x,A^ty>-<A^ty,x>+<y,y>=x^tA^tAx-<x,A^ty>-<x,A^ty>+<y,y>$
+        \item we can define $M\in \mathbb{R}^{MxM}$ such that $M=A^{t}A$
+        \item we can define $b\in \mathbb{R}^{M}$ such that $b=A^ty$
+        \item and we can define $c\in \mathbb{R}$ such that $c=<y,y>$
+        \item this finally allows us to write $f(x) = ||  Ax - y||^2=x^tMx+<x,b>+c$
+        \item thus we find $\nabla_{f}(x)=2Mx+b=2(A^{t}A)x-<2A,y>$        \item and $\mathcal{H}_{f}(x)=2M=2(A^{t}A)$
+    \end{itemize}
+\item show that f is convex.
+\begin{itemize}
+    \item we know that hessian matrix of A is equal to $2M=2(A^tA)$.
+    \item as we argued earler, the eigen vectors of $M$ are just the eigenvectors of $2m$ scalled by a factor of $\frac{1}{2}$ so we know that the sign of all the eigen vectors will be the same. 
+    \item further as  we demonstrated in homework 7 question 7.2.D that for any matrix A we can deffine another matrix $M=A^tA$ whcih is is positive semi definite. 
+    \item thus we know that $A^tA=M$ is postive semi defininte and thus that the hessian matrix of f $\mathcal{H}_{f}(x)=2M=2A^tA$ is also postive semi definite which is equivlent to F being convex
+    \item thus f is convex.
+\end{itemize}
+\end{enumerate}
+\newpage
+\end{enumerate}
+\begin{enumerate}[label=9.4]\item let $f:\mathbb{R}^{n}\rightarrow \mathbb{R}$ be a convex function. Assume that the minimum
+$m = min_{x\in\mathbb{R}^n}f(x)$ of f on R
+n
+is finite, and that the set of minimizes of f
+$M=\{v\in\mathbb{R}^{n}|(v) = m\}$
+is non-empty.
+\end{enumerate}
+\begin{enumerate}
+\begin{enumerate}
+    \item show that M is a convex set
+    \begin{itemize}
+        \item consider $x,y\in M: f(x)=f(y)=m$
+        \item we know as f is convex $f(\alpha x+ (1-\alpha)y)\leq \alpha f(X)+(1-\alpha) f(y)=\alpha m +(1-\alpha) m = m(1-\alpha+\alpha)$ this means that for any value of $x,y$ we have $\alpha x+ (1-\alpha)y\in M$ meaning the set M is convex.   
+    \end{itemize}
+    \item show that if f is strictly convex then M has only one element. 
+    \begin{itemize}
+    \item suppose for the sake of contradicion $x,y\in M: x\neq y$ and f is striclty convex 
+    as f is convex we have $f(\alpha x+ (1-\alpha)y)\leq \alpha f(X)+(1-\alpha) f(y)$ but as $x,y\in M$ we have $\alpha m +(1-\alpha) m = m(1-\alpha+\alpha)=m$
+    \item then as $x\neq y$ and $f(x)\alpha+(a-\alpha)f(y)=m$ f can not be strictly convex. whcih is a contradiction
+    
+\end{itemize}
+\end{enumerate}
+\end{enumerate}
+\end{document}
+
+

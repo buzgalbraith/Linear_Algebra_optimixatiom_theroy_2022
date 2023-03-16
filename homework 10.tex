@@ -1,0 +1,117 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\title{Instructions: }
+
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+\begin{itemize}
+  \item Upload your submission to Gradescope. There, indicate the page on which each problem is written.
+
+  \item Unless otherwise stated, all answers must be mathematically justified.
+
+  \item Partial answers will be graded.
+
+  \item You may discuss with other students, but you must write your own solutions separately based on your own understanding. List the students you work with (this won't affect your grade).
+
+  \item If you have questions, please feel free to ask on Piazza (rather than email) or at the office hours of the section leaders or instructor. Piazza sign-up link: piazza. com/nyu/fall2022/dsga1014
+
+\end{itemize}
+
+Problem $10.1$ (6 points). Let $A \in \mathbb{R}^{n \times m}$ and $y \in \mathbb{R}^{n}$. We consider the least squares problem:
+
+$$
+\min _{x \in \mathbb{R}^{m}}\|A x-y\|^{2} .
+$$
+
+We know from the lecture that $x^{\mathrm{LS}} \stackrel{\text { def }}{=} A^{\dagger} y$ is a solution of (1).
+
+(a) Prove that if $z \in \operatorname{Ker}(A)$, then $\left(A^{\dagger}\right)^{T} z=0$.
+\begin{itemize}
+    \item first note that by the svd we can express A=$(U\Sigma V^T)=
+    \begin{pmatrix}u_{1,1}&...&u_{1,n}\\...&...&... \\ u_{n,1}&...&u_{n,n}\end{pmatrix}$
+    \begin{pmatrix}\sigma_{1}&0&...&0\\...&...&...&... \\0&...\sigma_{r}&...&0\\...&...&...&....\\0&0&0&0 \end{pmatrix}\begin{pmatrix}v_{1,1}&...&v_{1,m}\\...&...&... \\ v_{m,1}&...&u_{m,m}\end{pmatrix}z
+    \item this yields $Az=\Sigma_{k=1}^{r}u_{i,k}v{j,k}\sigma_kz_i$
+    \item doing the same thing for $(A^\dagger)^TZ_{i,j}=\Sigma_{k=1^r}u_{i,k}v_{j,k}\frac{1}{\sigma_k}z_i$
+    \item as we know Z is in the kernel of A it must be the case that for all i,j $Az=\Sigma_{k=1}^{r}u_{i,k}v{j,k}\sigma_kz_i=0$ we however know that for $\sigma_i:i\leq r$ $\sigma_i\neq 0$ meaning that for $\Sigma_{k=1}^{r}u_{i,k}v{j,k}\sigma_kz_i=0$ to hold $\Sigma_{k=1}^{r}u_{i,k}v{j,k}z_i=0$ must hold, and if this is the case it follows that for all i,j$(A^\dagger)^TZ_{i,j}=\Sigma_{k=1^r}u_{i,k}v_{j,k}\frac{1}{\sigma_k}z_i=0$ meaning that $(A^{\dagger})^{T} z=0$
+\end{itemize}
+
+(b) Use part (a) to deduce that $x^{\mathrm{LS}} \perp \operatorname{Ker}(A)$
+\begin{itemize}
+    \item consider an arbitrary vector $z\in ker(A)$ we can see that $<z,x^{LS}>=<z,A^{\dagger}y>=(A^{\dagger}y)^tz=y^t(A^({\dagger})^tz)=y^t(0)=0$
+    \item this will hold for any element in ker(A) thus it must be the case that $x^{LS}\perp ker(A)$
+\end{itemize}
+
+(c) Use part (b) to deduce that $x^{\mathrm{LS}}$ is the solution of (1) that has the smallest Euclidean norm. (Hint: use the Pythagorean Theorem from lecture 4).
+\begin{itemize}
+    \item as we know $x^{ls}\perp ker(A)$ it must be the case that any other sollution y can be expressed as $\{y=x^{ls}+v|v\in ker(A)\} $ 
+    \item so by the Pythagorean theorem $||y||^2= ||x^{ls}+v||^2\leq ||x^{ls}||^2+||y||^2> ||x^{ls}$
+    \item thus it must be the case that $||y||>||x^{ls}$
+\end{itemize}
+\newpage
+
+Problem $10.2$ (4 points). Let $A \in \mathbb{R}^{n \times d}$ and $y \in \mathbb{R}^{n}$. For a given penalization parameter $\lambda>0$, the Ridge Regression optimization problem is
+
+$$
+\min _{x \in \mathbb{R}^{d}}\|A x-y\|^{2}+\lambda\|x\|^{2} .
+$$
+
+(a) Prove that $A^{\top} A+\lambda \operatorname{Id}_{d}$ is invertible. (Hint: what can you say about its eigenvalues?)
+\begin{itemize}
+    \item we know from homework 7 that $A^TA$ is positive semi-definite and thus has all non-negative eigenvalues. 
+    \item from fact 2 of lecture 6 we know that an arbitrary matrix A with eigen values a will have eigen values $a+\lambda$ if $\lambda I_d$  is added two it 
+    \item so we know that all eigenvalues $a$ of the matrix $A^TA$ will be $a\geq 0$ and that our regulairzation parameter $\lambda >0$ thus it must be the case that all eigen values of there sum will be $a+\lambda>0$ 
+    \item as this matrix will have all non-negative eigen values, we see $ker(A^{\top} A+\lambda \operatorname{Id}_{d})=\{\emptyset\}$ and thus the matrix $A^{\top} A+\lambda \operatorname{Id}_{d}$ is inevitable 
+\end{itemize}
+
+(b) Prove that the solution of (2) is given by $x^{\operatorname{Ridge}}=\left(A^{\top} A+\lambda \operatorname{Id}_{d}\right)^{-1} A^{\top} y$.
+\begin{itemize}
+    \begin{enumerate}
+        \item our first step is to find the gradient of $f(x)=|A x-y\|^{2}+\lambda\|x\|^{2}$
+        $\nabla f_x(x)= \frac{\partial|A x-y\|^{2}+\lambda||x||^2}{\partial y}=\frac{\partial<Ax-y,Ax-y>+\lambda||x||^2}{\partial y}=\frac{\partial(Ax-y)^tAx-y>+\lambda||x||^2}{\partial y}=\frac{\partial x^tA^tAx-x^tA^ty-y^tAx-Y^ty+\lambda||x||^2}{\partial y}=2A^TAx-2A^ty+2\lambda x$
+        \item we can take the second derivative of this and see $\mathcal{H}_{f(x)}(x)\frac{\partial^2f(x)}{\partial x}=2A^TA+2\lambda$ which is greater than zero always and thus convex. 
+        \item so in other words our function will be minimized at $\nabla f_{x}(x)=0$ and that is $2A^TAx-2A^ty+2\lambda x=0$ yielding $A^Ty=(\lambda I_d +A^TA)x$ we proved above $(\lambda I_d +A^TA)$ is invert able thus we have $x^{ridge}=(\lambda I_d +A^TA)^{-1}A^Ty$
+    \end{enumerate} 
+\end{itemize}
+\newpage
+Problem 10.3 (4 points). Recall that $\|M\|_{\mathrm{Sp}}$ denotes the spectral norm of a matrix $M$.
+
+(a) Let $A \in \mathbb{R}^{m \times n}$. Prove that $\|A x\| \leq\|A\|_{\text {Sp }}\|x\|$ for all $x \in \mathbb{R}^{n}$.
+\begin{itemize}
+    \item suppose for the sake of contradiction that, there exists a $y\in \mathbb{R}^n$ such that $||Ay||>||A||_{sp}||y||$
+    \item then as $||A||_{sp}=max_{x\in\mathbb{R}^{n}:||x||=1}||Ax||$ we can set $x=\frac{y}{||y||}$ and say $||Ay||>||A||_{sp}||y||\geq ||A\frac{y}{||y||}||||y||$ 
+    \item how ever $\frac{1}{||y||}$ is a scalar by norm properties we can write $||A\frac{y}{||y||}||||y||=||Ay||\frac{1}{||y||}||y||=||Ay||$
+    \item thus we have $||Ay||>||A||_{sp}||y||\geq ||Ay||$ which is a contradiction. 
+    \item meaning that  $\|A x\| \leq\|A\|_{\text {Sp }}\|x\|$ for all $x \in \mathbb{R}^{n}$ must hold.
+\end{itemize}
+
+(b) Prove that $\|A B\|_{\mathrm{Sp}} \leq\|A\|_{\mathrm{Sp}}\|B\|_{\mathrm{Sp}}$ for all $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times k}$.
+\begin{itemize}
+    \item suppose for the sake of contradiction that $\|A B\|_{\mathrm{Sp}} >\
+    |A\|_{\mathrm{Sp}}\|B\|_{\mathrm{Sp}}$ 
+    \item if this is the case we know that $max_{x:||x||=1}||ABx|>||A\|_{\mathrm{Sp}}\|B\|_{\mathrm{Sp}}$ 
+    \item we can view (Bx) as a vector in $\mathbb{R}^n$ thus by part one we can say that $|ABx||\leq ||A||_{sp}\||Bx||$ by applying part one again we can write $||A||_{sp}\||Bx||\leq ||A||_{sp}||B||_{sp}||x||$ further due to the constrains of the spectral norm $||x||=1$ meaning that $||A||_{sp}||B||_{sp}||x||=||A||_{sp}||B||_{sp}$
+    \item thus we have the following inequality. $\|A B\|_{\mathrm{Sp}} > \
+    |A\|_{\mathrm{Sp}}\|B\|_{\mathrm{Sp}}\leq ||A||_{sp}\||Bx||\leq ||A||_{sp}||B||_{sp}||x||=||A||_{sp}||B||_{sp}$ which is a contradiction 
+    \item meaning that $\|A B\|_{\mathrm{Sp}} \leq\|A\|_{\mathrm{Sp}}\|B\|_{\mathrm{Sp}}$ for all $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times k}$. holds 
+\end{itemize}
+
+\newpage
+
+Problem 10.4 (6 points). In this problem, you will gets hands-on coding experience with 1) ridge regularization, 2) a more advanced version of regression that involves polynomial fits rather than linear fits. Fun! Instructions and questions are in the Jupyter notebook polyreg.ipynb.
+
+Details on submission. Please code in Python and use the provided Jupyter Notebook. Submit as in previous $H W$ assignments (only submit a PDF version of your notebook by right-clicking $\rightarrow$ 'print' $\rightarrow$ 'Save as pdf').
+
+
+\end{document}

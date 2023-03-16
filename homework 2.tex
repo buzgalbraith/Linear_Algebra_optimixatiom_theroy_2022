@@ -1,0 +1,593 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 2}} } \vspace{0.2cm}\\
+Due September 18th at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=2.1]
+    \item Which of the following are linear transformations? Justify why or why
+not
+\begin{enumerate}
+    \item $T:\left.\right\vert^{\mathbb{R}\rightarrow \mathbb{R}}_{x \mapsto 10x}$
+    \blue{
+    \begin{itemize}
+        \item T is a linear transformations 
+        \item consider two arbitrary vectors $u,v\in \mathbb{R}$ we can see that $T(u+v)=10(u+v)=10(u)+10(v)=T(u)+T(v)$ thus property one is met 
+        \item consider an arbitrary vector $u\in \mathbb{R}$ and scalar $\alpha \in \mathbb{R}$ we can see that $T(\alpha u)=10(\alpha u)=\alpha(10(u))=\alpha(T(u))$ thus property two is met
+        \item which shows T is a linear transformations
+    \end{itemize}
+    
+    
+    }
+    \item $T:\left.\right\vert^{\mathbb{R}\rightarrow \mathbb{R}}_{x \mapsto |x|}$
+        \blue{
+    \begin{itemize}
+        \item T is not a linear transformations 
+        \item consider two vectors $u,v\in \mathbb{R}$ where $u=5 \text{and} v=-5$ we can see that $L(u+v)=L(5+(-5))=L(0)=|0|=0\neq 10=5+5=|5|+|-5|=L(5)+L(-5)=L(u)+L(v) $
+        \item thus T is not  linear transformation.
+    \end{itemize}
+    
+    
+    }
+    
+    
+    \item $T:\left.\right\vert^{\mathbb{R}\rightarrow \mathbb{R}}_{x \mapsto sin(x)}$
+            \blue{
+    \begin{itemize}
+        \item T is not a linear transformations 
+        \item consider two vectors $u,v\in \mathbb{R}$ where $u=v=\frac{\pi}{2}$ we can see that $L(u+v)=L(\frac{\pi}{2}+\frac{\pi}{2})=L(\pi)=sin(\pi)=0\neq 2=1+1=sin(\frac{\pi}{2})+sin(\frac{\pi}{2})=L(\frac{\pi}{2})+L(\frac{\pi}{2})=L(u)+L(v) $
+        \item thus T is not a linear transformation.
+    \end{itemize}
+    
+    
+    }
+    
+    
+    \item $T:\left.\right\vert^{\mathbb{R}^2\rightarrow \mathbb{R}}_{(x,y) \mapsto -2x+y}$
+        \blue{
+        \begin{itemize}
+        \item T is a linear transformations 
+        \item consider two arbitrary vectors $u,v\in \mathbb{R}^2$ such that $u=(u_1,u_2), v=(v_1,v_2)$ we can see that $T(u+v)=T(u_1+v_1,u_2+v_2)=-2(u_1+v_1)+y(u_2+v_2)=-2u_1-2v_1+u_2+v_1=(-2u_1+u_2)+(-2v_1+v_2)=T(u)+T(v)$ thus property one is met 
+        \item consider an arbitrary vector $u\in \mathbb{R}^2$ such that $u=(u_1,u_2)$ and scalar $\alpha \in \mathbb{R}$ we can see that $T(\alpha u)=T(\alpha u_1,\alpha u_2)=-2(\alpha u_1)+\alpha u_2=\alpha(-2u_1+u_2)=\alpha(T(u))$ thus property two is met
+        \item which shows T is a linear transformations
+    \end{itemize}
+    }
+    
+    \item $T:\left.\right\vert^{\mathbb{R}^2\rightarrow \mathbb{R}^2}_{(x,y) \mapsto (x-y,xy)}$
+    
+                \blue{
+    \begin{itemize}
+        \item T is not a linear transformations 
+        \item consider two vectors $u,v\in \mathbb{R}^2$ where $u=(1,-1) \text{and} v=(-1,1)$ we can see that $T(u+v)=T(1+-1,-1+1)=T(0,0)=(0-0,0*0)=(0,0)\neq (0,-2)=(0,-1)+(0,-1)=(1+(-1),1*-1)(-1+1,-1*1)=T(1,-1)+T(-1,1)=T(u)+t(v)  $
+        \item thus T is not a linear transformation.
+    \end{itemize}
+    
+    
+    }
+    
+    
+    
+    \item $T:\left.\right\vert^{\mathbb{R}^{nXM}\rightarrow \mathbb{R}^{nXm}}_{A \mapsto A^T}$
+    \blue{
+    \begin{itemize}
+        \item consider two arbitrary matrices $U,V\in \mathbb{R}^{nXm}|U=
+    \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} 
+\text{and }
+V=    \begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix} $ we can see that $T(u+v)=T(\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...& u_{1,m}+v_{1,m} \\
+... & ... &... \\
+u_{n,1}+v_{n,1} &...& u_{n,m}+v_{n,m}
+\end{pmatrix})=\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...& u_{1,m}+v_{1,m} \\
+... & ... &... \\
+u_{n,1}+v_{n,1} &...& u_{n,m}+v_{n,m}
+\end{pmatrix}^T=\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...&  u_{n,1}+v_{n,1}\\
+... & ... &... \\
+u_{1,m}+v_{1,m} &...& u_{n,m}+v_{n,m}
+\end{pmatrix}=
+\begin{pmatrix} 
+u_{1,1} &...& u_{n,1} \\
+... & ... &... \\
+u_{1,m} &...& u_{n,m}
+\end{pmatrix}+\begin{pmatrix} 
+v_{1,1} &...&v_{n,1} \\
+... & ... &... \\
+v_{1,m} &...& v_{n,m}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} ^T+
+ \begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix}^T =T(U)+T(V)$
+thus property one holds
+\item Now consider an arbitrary matrix $U\in \mathbb{R}^{nXm}|U=
+    \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} $ and scalar $\alpha \in \mathbb{R}$ we can see that $T(\alpha u)=T(\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+\alpha u_{n,1} &...& \alpha u_{n,m}
+\end{pmatrix})=\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+\alpha u_{n,1} &...& \alpha u_{n,m}
+\end{pmatrix}^T=\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+  \alpha u_{1,m} &...& \alpha u_{n,m}
+\end{pmatrix}=\alpha \begin{pmatrix} 
+u_{1,1} &...&  u_{1,m} \\
+... & ... &... \\
+  u_{1,m} &...&  u_{n,m}
+\end{pmatrix}=\alpha\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} ^T=\alpha T(\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} )=\alpha T(U)$ thus property two holds.
+\item showing that T is indeed a linear transformation. 
+    \end{itemize}  }
+    
+    
+    \item $T:\left.\right\vert^{\mathbb{R}^{nXm}\rightarrow \mathbb{R}}_{A \mapsto Tr(A)}$
+    
+        \blue{
+    \begin{itemize}
+        \item consider two arbitrary matrices $U,V\in \mathbb{R}^{nXm}|U=
+    \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} 
+\text{and }
+V=    \begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix} $ we can see that $T(u+v)=T(\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...& u_{1,m}+v_{1,m} \\
+... & ... &... \\
+u_{n,1}+v_{n,1} &...& u_{n,m}+v_{n,m}
+\end{pmatrix})=Tr(\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...& u_{1,m}+v_{1,m} \\
+... & ... &... \\
+u_{n,1}+v_{n,1} &...& u_{n,m}+v_{n,m}
+\end{pmatrix})=u_{1,1}+v_{1,1}+u_{2,2}+v_{2,2}+...u_{n,n}+v_{n,n}=(u_{1,1}+u_{2,2}+...+u_{n,n})+(v_{1,1}+v_{2,2}+...+v_{n,n})=
+Tr(\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix})+
+ Tr(\begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix}) =T(U)+T(V)$
+thus property one holds
+\item Now consider an arbitrary matrix $U\in \mathbb{R}^{nXm}|U=
+    \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} $ and scalar $\alpha \in \mathbb{R}$ we can see that $T(\alpha u)=T(\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+\alpha u_{n,1} &...& \alpha u_{n,m}
+\end{pmatrix})=Tr(\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+\alpha u_{n,1} &...& \alpha u_{n,m}
+\end{pmatrix})=\alpha(u_{1,1}+u_{2,2}+...+u_{n,n})=\alpha Tr(  \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix}=\alpha T(\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} )=\alpha T(U)$ thus property two holds.
+\item showing that T is indeed a linear transformation. 
+    \end{itemize}  }
+
+    \item $T:\left.\right\vert^{\mathbb{R}^{nXM}\rightarrow \mathbb{R}^n}_{A \mapsto diag(A)}$
+            \blue{
+    \begin{itemize}
+        \item consider two arbitrary matrices $U,V\in \mathbb{R}^{nXm}|U=
+    \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} 
+\text{and }
+V=    \begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix} $ we can see that $T(u+v)=T(\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...& u_{1,m}+v_{1,m} \\
+... & ... &... \\
+u_{n,1}+v_{n,1} &...& u_{n,m}+v_{n,m}
+\end{pmatrix})=diag(\begin{pmatrix} 
+u_{1,1}+v_{1,1} &...& u_{1,m}+v_{1,m} \\
+... & ... &... \\
+u_{n,1}+v_{n,1} &...& u_{n,m}+v_{n,m}
+\end{pmatrix})=(u_{1,1}+v_{1,1},u_{2,2}+v_{2,2},...,u_{n,n}+v_{n,n})=(u_{1,1},u_{2,2},...,u_{n,n})+(v_{1,1},v_{2,2},...,v_{n,n})= diag( \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} )+diag(\begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix})=T(\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix})+T(\begin{pmatrix} 
+v_{1,1} &...& v_{1,m} \\
+... & ... &... \\
+v_{n,1} &...& v_{n,m}
+\end{pmatrix})=T(U)+T(V)$
+thus property one holds
+\item Now consider an arbitrary matrix $U\in \mathbb{R}^{nXm}|U=
+    \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} $ and scalar $\alpha \in \mathbb{R}$ we can see that $T(\alpha u)=T(\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+\alpha u_{n,1} &...& \alpha u_{n,m}
+\end{pmatrix})=diag(\begin{pmatrix} 
+\alpha u_{1,1} &...& \alpha u_{1,m} \\
+... & ... &... \\
+\alpha u_{n,1} &...& \alpha u_{n,m}
+\end{pmatrix})=\alpha(u_{1,1},u_{2,2},...,u_{n,n})=\alpha *diag(  \begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix}=\alpha T(\begin{pmatrix} 
+u_{1,1} &...& u_{1,m} \\
+... & ... &... \\
+u_{n,1} &...& u_{n,m}
+\end{pmatrix} )=\alpha T(U)$ \\thus property two holds.\\
+\item showing that T is indeed a linear transformation. 
+    \end{itemize}  }
+    \item let $M=
+    \begin{pmatrix}
+2 & 2 \\
+-1 & -1
+\end{pmatrix} \in \mathbb{R}^{2X2}$ and  $T:\left.\right\vert^{\mathbb{R}^{2X2}\rightarrow \mathbb{R}^{2X2}}_{A \mapsto MA}$
+\end{enumerate}
+\blue{
+\begin{itemize}
+    \item consider two arbitrary matrices $U,V\in \mathbb{R}^2 | U= \begin{pmatrix}
+    u_{1,1} & u_{1,2}\\
+    u_{2,1} & u_{2,2}
+    \end{pmatrix}
+    \text{ and }
+    V= \begin{pmatrix}
+    v_{1,1} & v_{1,2}\\
+    v_{2,1} & v_{2,2}
+    \end{pmatrix}$ we can see that $T(U+V)=T(
+    \begin{pmatrix}
+    u_{1,1}+v_{1,1} &u_{1,2}+ v_{1,2}\\
+    u_{2,1}+v_{2,1} &u_{2,2}+ v_{2,2}
+    \end{pmatrix})=
+    \begin{pmatrix}
+2 & 2 \\
+-1 & -1
+\end{pmatrix}\begin{pmatrix}
+    u_{1,1}+v_{1,1} &u_{1,2}+ v_{1,2}\\
+    u_{2,1}+v_{2,1} &u_{2,2}+ v_{2,2}
+    \end{pmatrix}=\\
+    \begin{pmatrix}
+    2(u_{1,1}+v_{1,1})+2(u_{2,1}+v_{2,1}) & 2(u_{1,2}+ v_{1,2})+2(u_{2,2}+ v_{2,2})\\
+    -1(u_{1,1}+v_{1,1})-1(u_{2,1}+v_{2,1})& -1(u_{1,2}+ v_{1,2})-1(u_{2,2}+ v_{2,2})
+    \end{pmatrix}\\
+     \begin{pmatrix}
+    2(u_{1,1}+u_{2,1})+2(v_{1,1}+v_{2,1}) & 2(u_{1,2}+ u_{2,2})+2(v_{1,2}+ v_{2,2})\\
+    -1(u_{1,1}+u_{2,1})-1(v_{1,1}+v_{2,1})& -1(u_{1,2}+u_{2,2})-1(v_{1,2}+v_{2,2})
+    \end{pmatrix}=
+    \begin{pmatrix}
+    2(u_{1,1}+u_{2,1}) & 2(u_{1,2}+ u_{2,2})\\
+    -1(u_{1,1}+u_{2,1})& -1(u_{1,2}+u_{2,2})
+    \end{pmatrix}+
+     \begin{pmatrix}
+    2(v_{1,1}+v_{2,1}) & 2(v_{1,2}+ v_{2,2})\\
+    -1(v_{1,1}+v_{2,1})& -1(v_{1,2}+v_{2,2})
+    \end{pmatrix}=\begin{pmatrix}
+2 & 2 \\
+-1 & -1
+\end{pmatrix}\begin{pmatrix}
+    u_{1,1} & u_{1,2}\\
+    u_{2,1} & u_{2,2}
+    \end{pmatrix}+\begin{pmatrix}
+2 & 2 \\
+-1 & -1
+\end{pmatrix}\begin{pmatrix}
+    v_{1,1} & v_{1,2}\\
+    v_{2,1} & v_{2,2}
+    \end{pmatrix}
+    =T(\begin{pmatrix}
+    u_{1,1} & u_{1,2}\\
+    u_{2,1} & u_{2,2}
+    \end{pmatrix})+T(\begin{pmatrix}
+    v_{1,1} & v_{1,2}\\
+    v_{2,1} & v_{2,2}
+    \end{pmatrix})=T(U)+T(V)$\\ Thus property one holds 
+    \item consider an arbitrary matrix $U\in \mathbb{R}^2 | U= \begin{pmatrix}
+    u_{1,1} & u_{1,2}\\
+    u_{2,1} & u_{2,2}
+    \end{pmatrix}$ and scalar $\alpha \in \mathbb{R}$ we can see that $T(\alpha U)=T(\begin{pmatrix}
+    \alpha u_{1,1} & \alpha u_{1,2}\\
+    \alpha u_{2,1} & \alpha u_{2,2}
+    \end{pmatrix})=\begin{pmatrix}
+2 & 2 \\
+-1 & -1
+\end{pmatrix}\begin{pmatrix}
+    \alpha u_{1,1} & \alpha u_{1,2}\\
+    \alpha u_{2,1} & \alpha u_{2,2}
+    \end{pmatrix}=\begin{pmatrix}
+    2(\alpha u_{1,1})+2(\alpha u_{2,1}) & 2(\alpha u_{1,2}) +2(\alpha u_{2,2})\\
+    -1(\alpha u_{1,1})-1(\alpha u_{2,1}) & -1(\alpha u_{1,2}) -1(\alpha u_{2,2})
+    \end{pmatrix}\\=\begin{pmatrix}
+    \alpha(2( u_{1,1})+2(u_{2,1})) & \alpha(2( u_{1,2}) +2( u_{2,2}))\\
+    \alpha(-1(u_{1,1})-1(u_{2,1})) & \alpha(-1(u_{1,2}) -1(u_{2,2}))
+    \end{pmatrix}\\=
+    \alpha * \begin{pmatrix}
+    (2( u_{1,1})+2(u_{2,1})) & (2( u_{1,2}) +2( u_{2,2}))\\
+    (-1(u_{1,1})-1(u_{2,1})) & (-1(u_{1,2}) -1(u_{2,2}))
+    \end{pmatrix}=\alpha(\begin{pmatrix}
+2 & 2 \\
+-1 & -1
+\end{pmatrix}\begin{pmatrix}
+    u_{1,1} & u_{1,2}\\
+    u_{2,1} & u_{2,2}
+    \end{pmatrix})=\alpha T(\begin{pmatrix}
+    u_{1,1} & u_{1,2}\\
+    u_{2,1} & u_{2,2}
+    \end{pmatrix})=\alpha T(U)\\
+    $ Thus property two holds. 
+    \item thus T is a linear Transformation. 
+\end{itemize}
+
+
+}
+
+
+\end{enumerate} 
+\begin{enumerate}[label=2.2]
+\item For the following linear transformations, compute the canonically associated matrix
+\begin{enumerate}
+    \item The transformation T in part a of Problem 2.1
+    \blue{
+    \begin{itemize}
+        \item we want to model  $T:\left.\right\vert^{\mathbb{R}\rightarrow \mathbb{R}}_{x \mapsto 10x}$
+        \item we know by definition in this case $\Tilde{T}$ is an 1X1 matrix. and we know the canonical basis for $\mathbb{R}=\{1\}$
+        \item so we know that $\Tilde{T}$ =\begin{pmatrix}T(e_1)\end{pmatrix}=\begin{pmatrix}T(1)\end{pmatrix}=\begin{pmatrix}10\end{pmatrix}
+        \item and finally we can see $\forall x\in \mathbb{R}$ we will have $\Tilde{T}x=\begin{pmatrix}10\end{pmatrix}x=10x$
+    \end{itemize}
+    }
+    
+    \item The transformation T in part d of Problem 2.1
+    
+    \blue{
+    \begin{itemize}
+        \item we want to model $T:\left.\right\vert^{\mathbb{R}^2\rightarrow \mathbb{R}}_{(x,y) \mapsto -2x+y}$
+        \item so we know that $\Tilde{T}$ will have dimensions (1,2), and we know that the canoical basis of $\mathbb{R}^2=\{(1,0),(0,1)\}$
+        \item thus we can write $\Tilde{T}$=\begin{pmatrix}T(e_1)  & T(e_2)\end{pmatrix}=\begin{pmatrix}T(1,0)&T(0,1)\end{pmatrix}=\begin{pmatrix}-2(1)+0&-2(0)+1)\end{pmatrix}\\=\begin{pmatrix}-2 & 1\end{pmatrix}
+        \item and we can see for $x\in \mathbb{R}^2$ that $\Tilde{T}x= \begin{pmatrix}-2 & 1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=-2x+y$
+    \end{itemize}
+    }
+    \item The transformation $T : \mathbb{R}^2 \rightarrow \mathbb{R}^3$ that satisfies T(1, -1) = (1, 0, 1) and T(0, 1) = (3, 2, 1)
+    
+    \blue{
+    \begin{itemize}
+        \item Note that $\title{T}$ must have dimension (3,2) so we can say $\Tilde{T}=$\begin{pmatrix}
+        t_{1,1}&t_{1,2}\\
+        t_{2,1}&t_{2,2}\\
+        t_{3,1}&t_{3,2}\\
+        \end{pmatrix}
+        \item the second equation tells us that $\Tilde{T}$\begin{pmatrix} 0 \\ 1\end{pmatrix} $=$\begin{pmatrix}
+        t_{1,1}&t_{1,2}\\
+        t_{2,1}&t_{2,2}\\
+        t_{3,1}&t_{3,2}\\
+        \end{pmatrix}\begin{pmatrix} 0 \\ 1\end{pmatrix}=\begin{pmatrix} 3 \\ 2\\1\end{pmatrix} so it must be the case that $t_{1,2}=3 \text{ and }t_{2,2}=2 \text{ and }t_{3,2}=1$
+        \item with  this information in hand we can write  $\Tilde{T}=$\begin{pmatrix}
+        t_{1,1}&3\\
+        t_{2,1}&2\\
+        t_{3,1}&1\\
+        \end{pmatrix} 
+        \item so now we are solivng linear equations to make the last conditon hold that is we want t $\Tilde{T}$\begin{pmatrix} 1\\ -1\end{pmatrix} $=$\begin{pmatrix}
+        t_{1,1}&3\\
+        t_{2,1}&2\\
+        t_{3,1}&1\\
+        \end{pmatrix}\begin{pmatrix} 1\\ -1\end{pmatrix} =\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} 
+   \item this gives us three equations $t_{1,1}-3=1$, $t_{2,1}-2=0$ and  $t_{3,1}-1=1$ so it must be the case that $t_{1,1}=4 \text{ and }t_{2,1}=2 \text{ and }t_{3,1}=2$
+   \item so finally our $\Tilde{T}=$\begin{pmatrix}
+        4&3\\
+        2&2\\
+        2&1\\
+        \end{pmatrix} 
+    \end{itemize}
+    }
+\end{enumerate}
+
+\begin{enumerate}[label=2.3]
+\item Let B and P be the following matrices in $\mathbb{R}^{3×3}$ such that
+
+$$B=
+\begin{pmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{pmatrix} 
+P=
+\begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1} & B_{2,2},  & B_{2,3} \\
+B_{3,1} & B_{3,2},  & B_{3,3} \\
+\end{pmatrix}$$
+\\with arbitrary entries for B.
+\begin{enumerate}[label = (a)]
+    \item Compute the matrix product BP . (Not graded: can you see why P is called a “permutation
+matrix”?)
+\blue{
+\begin{itemize}
+    \item $BP=$ 
+\begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1} & B_{2,2},  & B_{2,3} \\
+B_{3,1} & B_{3,2},  & B_{3,3} \\
+\end{pmatrix}
+\begin{pmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{pmatrix}=\begin{pmatrix}
+B_{1,2} & B_{1,1} & B_{1,3}\\
+B_{2,2} & B_{2,1} & B_{2,3}\\
+B_{3,2} & B_{3,1} & B_{3,3}\\
+\end{pmatrix}
+\end{itemize}
+}
+
+
+\end{enumerate}
+\begin{enumerate}[label = (b)]
+    \item Compute P B. How is the answer related to BP computed in part a?
+\end{enumerate}
+\blue{
+\begin{itemize}
+\item $PB=$ 
+\begin{pmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1} & B_{2,2},  & B_{2,3} \\
+B_{3,1} & B_{3,2},  & B_{3,3} \\
+\end{pmatrix}=
+\begin{pmatrix}
+B_{2,1} & B_{2,2},  & B_{2,3} \\
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{3,1} & B_{3,2},  & B_{3,3} \\
+\end{pmatrix}
+\item part BP changes the order of the rows, PB changes the order of the columns 
+\end{itemize}
+}
+
+\end{enumerate}
+\newpage
+\begin{enumerate}[label=2.4]
+\item Let $B\in \mathbb{R}^{4×3}$ be a matrix with arbitrary entries $$B=\begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1} & B_{2,2},  & B_{2,3} \\
+B_{3,1} & B_{3,2},  & B_{3,3} \\
+B_{4,1} & B_{4,2},  & B_{4,3} \\
+\end{pmatrix} $$
+find two matrices A and C such that 
+$$ABC=\begin{pmatrix}
+B_{1,2} & B_{1,1},  & B_{1,3} & B_{1,2} \\
+B_{2,2}+B_{3,2} & B_{2,1}+B_{3,1},  & B_{2,3}+B_{3,3}& B_{2,2}+B_{3,2} \\
+B_{4,2} & B_{4,1},  & B_{4,3} & B_{4,2}\\
+\end{pmatrix} $$
+\\holds for any B defined above.
+\end{enumerate}
+\blue{
+\begin{itemize}
+    \item Consider A, C such that $A=
+    \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 1 & 0\\
+    0 & 0 & 0 & 1
+    \end{pmatrix}$ and $C=
+    $\begin{pmatrix}
+    0 & 1 & 0 & 0\\
+    1 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix}
+    \item we can see that $AB=$
+    \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 1 & 0\\
+    0 & 0 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1} & B_{2,2},  & B_{2,3} \\
+B_{3,1} & B_{3,2},  & B_{3,3} \\
+B_{4,1} & B_{4,2},  & B_{4,3} \\
+\end{pmatrix}=\\\begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1}+B_{3,1} & B_{2,2}+B_{3,2},  & B_{2,3}+B_{3,3} \\
+B_{4,1} & B_{4,2},  & B_{4,3} 
+\end{pmatrix}
+\item now we want (AB)C=\begin{pmatrix}
+B_{1,1} & B_{1,2},  & B_{1,3} \\
+B_{2,1}+B_{3,1} & B_{2,2}+B_{3,2},  & B_{2,3}+B_{3,3} \\
+B_{4,1} & B_{4,2},  & B_{4,3} 
+\end{pmatrix}\begin{pmatrix}
+    0 & 1 & 0 & 0\\
+    1 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix}\\
+=\begin{pmatrix}
+B_{1,2} & B_{1,1},  & B_{1,3} & B_{1,2} \\
+B_{2,2}+B_{3,2} & B_{2,1}+B_{3,1},  & B_{2,3}+B_{3,3}& B_{2,2}+B_{3,2} \\
+B_{4,2} & B_{4,1},  & B_{4,3} & B_{4,2}\\
+\end{pmatrix}
+\item so thus the matrices  $A=
+    \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 1 & 0\\
+    0 & 0 & 0 & 1
+    \end{pmatrix}$ and $C=
+    $\begin{pmatrix}
+    0 & 1 & 0 & 0\\
+    1 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix} meet the conditions 
+\end{itemize}
+
+
+}
+\end{enumerate}
+
+\end{document}

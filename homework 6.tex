@@ -1,0 +1,115 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,graphicx,amsmath,amsfonts,amscd,amssymb,bm,cite,epsfig,epsf,url}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsthm,multirow,wasysym,appendix}
+\usepackage{array,subcaption} 
+% \usepackage[small,bf]{caption}
+\newcommand{\red}[1]{{\leavevmode\color{red}{#1}}}
+\newcommand{\blue}[1]{{\leavevmode\color{blue}{#1}}}
+\usepackage{enumitem}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\begin{document}
+
+\begin{center}
+{\large{\textbf{Homework 6}} } \vspace{0.2cm}\\
+Due October 16thth at 12 am
+\\
+\end{center}
+\begin{enumerate}[label=6.1]
+    \item compute all eigenvalues of \begin{pmatrix}0&1\\ 1&0\end{pmatrix} and asociated eigenvectors
+
+\blue{
+\begin{itemize}
+    \item we know that the eigenvalues of a matrix are the values such that $Ax=\lambda x$ meaning that $Ax-\lambda x=0=x(Ax-I \lambda)$ this condition is equivalent finding a $\lambda \in \mathbb{R}$ such that $det(AX-I\lambda)=0$ 
+    \item so we can write $Ax-\lambda I=$ \begin{pmatrix} 0&1-\lambda\\ 1-\lambda & 0 
+    \end{pmatrix}
+    \item and see $det(\begin{pmatrix} -\lambda&1\\ 1 & -\lambda 
+    \end{pmatrix})=1-(-\lambda)(-\lambda)^{2}=1-\lambda^2$ this equals zero when $\lambda=1\text{ or } \lambda=-1$
+    \item then we want vectors such that $A(-\lambda I) x=0$ meaning that for $\lambda=1$ we want $\begin{pmatrix}-1&1\\ 1&-1\end{pmatrix}x=0$ adding row 1 to row 2 we get $\begin{pmatrix}-1&1\\ 0&0\end{pmatrix}x=0$ and deviding row 1 by -1 yields $\begin{pmatrix}1&-1\\ 0&0\end{pmatrix}x=0$
+    \item this implies that $x_1-x_2=0$ ie that $x_1=x_2$ for eigenvalue 1 is $\begin{pmatrix} 1&1 \end{pmatrix}$
+    \item repeating the same process for for $\lambda=-1$ we want $\begin{pmatrix}-1&-1\\ 1&1\end{pmatrix}x=0$ adding row 1 to row 2 we get $\begin{pmatrix}-1&-1\\ 0&0\end{pmatrix}x=0$ and dividing row 1 by -1 yields $\begin{pmatrix}1&1\\ 0&0\end{pmatrix}x=0$
+    \item this implies that $x_1+x_2=0$ ie that $x_1=-x_2$ thus a simple eigenvector for eigenvaue -1 is $\begin{pmatrix} 1&-1 \end{pmatrix}$
+\end{itemize}
+    }
+\end{enumerate}    
+    
+
+
+
+\begin{enumerate}[label=6.2]
+\item Let v $\in \mathbb{R}^N$ be a non-zero vector. What are the eigenvalues of the n × n
+matrix $M = vv^T$ ? What are the multiplicities of these eigenvalues? Justify
+\blue{
+\begin{itemize}
+    \item for any  v $\in \mathbb{R}^N$ we can see that $M=v*v^t=$\begin{pmatrix}v_1^2&v_1v_2&...&v_1v_n\\...&...&...&...\\v_1v_n&v_nv_2&...&v_n^2\end{pmatrix}=\begin{pmatrix}v_1(v)\\...\\v_n(v)\end{pmatrix}writing it in this way makes it clear that each row is really just a linear combination of one another. 
+    \item thus we can see that $Rank(M)=1$ this implies that $dim(ker(m))=n-1$
+    \item as the kernel is not empty we know there exists at least 1 vector $x\in \mathbb{R^n}$ such that $Ax=0(x)=0$ meaning that zero is indeed an eigenvalue
+    \item further as we know that the multiplicity of a certain eigenvalue is $dim(ker(m-\lambda i))$ so we can see that $E_{0}(M)=dim(ker(m-0 i))=dim(ker(M))=n-1$
+    \item additionally we know that over the k potential eigenvalues with multiplicity n $\Sigma_{i}^{k}m_i\leq n$  meaning that there can at most be one more eigenvalue of multiplicity one. 
+    \item note that $Mv\neq 0$ meaning that $x\not \in ker(M)$ and thus $x\in span(v)$ meaning that the reaming eigenvector x is in the span(v) so we can just find the eigenvalue for v
+    in other words any $\lambda \in \mathbb{R}: Mv=\lambda v$ must be the final remaining eigenvalue. \item so we can write $Mv=\lambda v$
+    \item $Mv-\lambda v=0=(M-\lambda i)v=0$
+    \item $((M-\lambda I)=v*v^t-\lambda I)v=0=$\begin{pmatrix}(v_1^2-\lambda  i)v_1 &v_1v_2v_2&...&v_1v_nv_n\\...&...&...&...\\v_1v_nv_1&v_nv_2&...&(v_n^2\lambda i)v_n\end{pmatrix}=\\\begin{pmatrix}(v_1(v_1^2+v_2^2+...+v_n^2-\lambda)  \\...\\(v_n(v_1^2+v_2^2+...+v_n^2-\lambda)\end{pmatrix}
+\\\rightarrow \lambda =\Sigma_{i=1}^{n}v_i^2
+
+\item so finally we see we have two eigenvalues $\lambda_0=0$ and $\lambda_1=\Sigma_{i=1}^{n}v_i^2$
+and $E_{0}=n-1$ and $E_{\Sigma_{i=1}^{n}v_i^2}=1$
+\end{itemize}
+}
+\end{enumerate}
+
+\begin{enumerate}[label=6.3]
+\item Consider a Washington Square squirrel trapped in a box divided into
+9 rooms. This squirrel enjoys an active life style, so every minute, it decides to go through any of
+the available doors or stay in the current room, where all actions are taken with equal probability.
+See figure. For example, if the squirrel is in box 1 at time t, then at time t + 1, it is in box 1, 2,
+or 4 with probability 1/3 each. For every minute t = 0, 1, 2, . . . , let x(t) ∈ R9 denote the vector
+whose i-th entry is the probability that the squirrel is in box i at time t
+\begin{enumerate}
+    \item Find a matrix P such that x(t + 1) = P x(t)
+    \blue{
+    \begin{itemize}
+        \item We know that there are 9 total states, and at each state there is a probability that the squirrel can transition to any other state
+        \item thus we have a 9X9 matrix 
+        \item where each entree  i is the likelihood of ending up in sate i starting at state j. that is $P_{i,j}=p(i|j)$
+        \ITME all of this is with markov assumptions by the way 
+        \item so this gives us the following P matrix \\$P=\begin{pmatrix}
+        1/3 & 1/4 & 0 & 1/4 & 0 & 0 & 0 & 0 & 0  
+        \\1/3 & 1/4 & 1/3 & 0 & 1/5 & 0 & 0 & 0 & 0 \\0 & 1/4 & 1/3 & 0 & 0 & 1/4 & 0 & 0 & 0 \\1/3 & 0 & 0 & 1/4 & 1/5 & 0 & 1/3 & 0 & 0 \\0 & 1/4 & 0 & 1/4 & 1/5 & 1/4 & 0 & 1/4 & 0 \\0 & 0 & 1/3 & 0 & 1/5 & 1/4 & 0 & 0 & 1/3
+        \\0 & 0 & 0 & 1/4 & 0 & 0 & 1/3 & 1/4 & 0 
+        \\0 & 0 & 0 & 0 & 1/5 & 0 & 1/3 & 1/4 & 1/3 
+        \\0 & 0 & 0 & 0 & 0 & 1/4 & 0 & 1/4 & 1/3 \\
+        \end{pmatrix}$
+    \end{itemize}
+    
+    }
+    \item Can you find an integer k ≥ 1 such that all entries of $P^k$ are strictly
+positive?
+\blue{
+\begin{itemize}
+    \item we can computationally check that $P^{k}$ holds for k=4
+    
+\end{itemize}
+
+}
+\item Suppose that at time 0, the squirrel is in room 1. In 10 minutes,
+what is the probability the squirrel will be in each of the 9 rooms?
+(That is, if x(0) = e1 ∈ R9, then compute x(10)
+\item compute the invariant measure for this 
+\item You plan to visit NYU in 10 years to see your friend, this squirrel.
+Which room should you arrive in so as to maximize the probability
+that when you arrive, the squirrel is in the same room? Justify
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
